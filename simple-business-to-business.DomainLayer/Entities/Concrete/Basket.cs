@@ -6,12 +6,19 @@ using System.Text;
 
 namespace simple_business_to_business.DomainLayer.Entities.Concrete
 {
-    public class Currencies: IBaseEntity
+    public class Basket:IBaseEntity
     {
         public int Id { get; set; }
-        public string CurrencyName { get; set; }
-        public string CurrencyCode { get; set; }
-        public char Symbol { get; set; }
+
+        public int AppUserId { get; set; }
+        public AppUsers AppUsers { get; set; }
+
+        public int ProductId { get; set; }
+        public Products Products { get; set; }
+
+        public int BasketQuantity { get; set; }
+
+
 
         private DateTime _createDate = DateTime.Now;
         public DateTime CreateDate { get => _createDate; set => _createDate = value; }

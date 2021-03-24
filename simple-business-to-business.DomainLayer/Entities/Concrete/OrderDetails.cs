@@ -6,12 +6,25 @@ using System.Text;
 
 namespace simple_business_to_business.DomainLayer.Entities.Concrete
 {
-    public class Currencies: IBaseEntity
+    public class OrderDetails:IBaseEntity
     {
+
         public int Id { get; set; }
-        public string CurrencyName { get; set; }
-        public string CurrencyCode { get; set; }
-        public char Symbol { get; set; }
+
+        public int OrderId { get; set; }
+        public Orders Orders { get; set; }
+
+
+        public int ProductId { get; set; }
+        public Basket Basket { get; set; }
+
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
+        public decimal Discount { get; set; }
+        public decimal Tax { get; set; }
+
+        public decimal Total { get; set; }
+         
 
         private DateTime _createDate = DateTime.Now;
         public DateTime CreateDate { get => _createDate; set => _createDate = value; }
