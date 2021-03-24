@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>simple_business_to_business.InfrastructureLayer</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Context\" />
+    <Folder Include="Mapping\Abstract\" />
+    <Folder Include="Mapping\Concrete\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Repositories\Concrete\Base\" />
+    <Folder Include="Repositories\Concrete\EntityType\" />
+    <Folder Include="UnitOfWork\Concrete\" />
+  </ItemGroup>
+
+</Project>
