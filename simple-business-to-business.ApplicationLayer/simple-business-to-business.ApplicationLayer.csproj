@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>simple_business_to_business.ApplicationLayer</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\simple-business-to-business.DomainLayer\simple-business-to-business.DomainLayer.csproj" />
+    <ProjectReference Include="..\simple-business-to-business.InfrastructureLayer\simple-business-to-business.InfrastructureLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="IoC\" />
+    <Folder Include="Modes\VMs\" />
+    <Folder Include="Services\Concrete\" />
+    <Folder Include="Services\Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="FluentValidation" Version="10.0.2" />
+  </ItemGroup>
+
+</Project>
