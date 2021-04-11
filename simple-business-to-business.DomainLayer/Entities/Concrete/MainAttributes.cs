@@ -8,13 +8,13 @@ namespace simple_business_to_business.DomainLayer.Entities.Concrete
 {
     public class MainAttributes:IBaseEntity
     {
+         
         public int Id { get; set; }
         public string AttributeName { get; set; }
         public string Description { get; set; }
         public string ImagePath { get; set; } = "/images/MainAttribute/default.jpg";
 
-
-        public ICollection<ProductPictures> ProductPictures { get; set; }
+         
 
         private DateTime _createDate = DateTime.Now;
         public DateTime CreateDate { get => _createDate; set => _createDate = value; }

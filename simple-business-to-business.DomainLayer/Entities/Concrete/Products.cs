@@ -39,6 +39,8 @@ namespace simple_business_to_business.DomainLayer.Entities.Concrete
 
         public ICollection<ProductPictures>ProductPictures { get; set; }
 
+        public ICollection<MainAttributes> MainAttributes { get; set; }
+
         public ICollection<SubAttributes> SubAttributes { get; set; }
 
         public Companies Companies { get; set; }

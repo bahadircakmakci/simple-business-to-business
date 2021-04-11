@@ -13,8 +13,7 @@ namespace simple_business_to_business.DomainLayer.Entities.Concrete
         public string Description { get; set; }
         public string ImagePath { get; set; } = "/images/MainCategory/default.jpg";
 
-
-        public ICollection<ProductPictures> ProductPictures { get; set; }
+ 
 
         private DateTime _createDate = DateTime.Now;
         public DateTime CreateDate { get => _createDate; set => _createDate = value; }

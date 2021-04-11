@@ -10,6 +10,8 @@ namespace simple_business_to_business.DomainLayer.Entities.Concrete
     {
         public int Id { get; set; }
         public int ProductId { get; set; }
+        public Products Products { get; set; }
+
         public string ImagePath { get; set; } = "/images/Product/default.jpg";
 
         private DateTime _createDate = DateTime.Now;

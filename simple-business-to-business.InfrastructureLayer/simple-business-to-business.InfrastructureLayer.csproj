@@ -6,13 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Context\" />
-    <Folder Include="Mapping\Abstract\" />
-    <Folder Include="Mapping\Concrete\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Repositories\Concrete\Base\" />
-    <Folder Include="Repositories\Concrete\EntityType\" />
-    <Folder Include="UnitOfWork\Concrete\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\simple-business-to-business.DomainLayer\simple-business-to-business.DomainLayer.csproj" />
   </ItemGroup>
 
 </Project>
