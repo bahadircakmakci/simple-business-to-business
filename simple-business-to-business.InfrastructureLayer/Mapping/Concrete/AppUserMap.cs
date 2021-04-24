@@ -17,6 +17,7 @@ namespace simple_business_to_business.InfrastructureLayer.Mapping.Concrete
             builder.Property(x => x.NormalizedUserName).IsRequired(false);
 
             builder.Property(x => x.FullName).IsRequired(false);
+            builder.Property(x => x.CompanyName).IsRequired(false);
             builder.Property(x => x.ImagePath).IsRequired(false);
 
             base.Configure(builder);

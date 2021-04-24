@@ -11,8 +11,10 @@ namespace simple_business_to_business.ApplicationLayer.AutoMapper
     {
         public Mapping()
         {
-            CreateMap<AppUsers, RegisterDTO>().ForMember(x => x.Name, opt => opt.MapFrom(a => a.FullName)).ReverseMap();
+            CreateMap<AppUsers, RegisterDTO>().ReverseMap();
             CreateMap<AppUsers, LoginDTO>().ReverseMap();
+            CreateMap<AppUsers, SearchUserDTO>().ReverseMap();
+            CreateMap<AppUsers, EditProfileDTO>().ReverseMap();
         }
     }
 }

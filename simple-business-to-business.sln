@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "simple-business-to-business
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "simple-business-to-business.InfrastructureLayer", "simple-business-to-business.InfrastructureLayer\simple-business-to-business.InfrastructureLayer.csproj", "{FF8A205E-05D1-41C7-BDDA-F6D116627D2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "simple-business-to-business.ApplicationLayer", "simple-business-to-business.ApplicationLayer\simple-business-to-business.ApplicationLayer.csproj", "{F96F534D-8E63-43D6-B670-1F84B1ED9FC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "simple-business-to-business.ApplicationLayer", "simple-business-to-business.ApplicationLayer\simple-business-to-business.ApplicationLayer.csproj", "{F96F534D-8E63-43D6-B670-1F84B1ED9FC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "simple-business-to-business.PresentationLayer", "simple-business-to-business.PresentationLayer\simple-business-to-business.PresentationLayer.csproj", "{562E37C6-AFDC-4C2D-BFB0-34D9A97A3D8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "simple-business-to-business.PresentationLayer", "simple-business-to-business.PresentationLayer\simple-business-to-business.PresentationLayer.csproj", "{562E37C6-AFDC-4C2D-BFB0-34D9A97A3D8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

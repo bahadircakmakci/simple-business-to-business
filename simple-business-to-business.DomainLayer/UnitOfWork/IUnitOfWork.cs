@@ -8,7 +8,7 @@ namespace simple_business_to_business.DomainLayer.UnitOfWork
 {
     public interface IUnitOfWork : IAsyncDisposable
     {
-
+        IAppUserRepository AppUser { get; }
         IOrderRepository OrderRepository { get; }
         IOrderDetailsRepository OrderDetailsRepository { get; }
         IBasketRepository BasketRepository { get; }        

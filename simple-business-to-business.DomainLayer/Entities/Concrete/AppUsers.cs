@@ -12,6 +12,7 @@ namespace simple_business_to_business.DomainLayer.Entities.Concrete
 
 
         public string FullName { get; set; }
+        public string CompanyName { get; set; }
         public int PlasiyerCode { get; set; }
         public string ImagePath { get; set; } = "/images/users/default.jpg";
 
@@ -24,7 +25,7 @@ namespace simple_business_to_business.DomainLayer.Entities.Concrete
         public DateTime? UpdateDate { get; set; }
         public DateTime? DeleteDate { get; set; }
 
-        private Status _status = Status.Active;
+        private Status _status = Status.Passive;
         public Status Status { get => _status; set => _status = value; }
     }
 }

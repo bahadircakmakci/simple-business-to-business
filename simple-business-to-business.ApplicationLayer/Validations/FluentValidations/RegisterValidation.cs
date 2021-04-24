@@ -16,7 +16,7 @@ namespace simple_business_to_business.ApplicationLayer.Validations.FluentValidat
 
             RuleFor(x => x.PasswordConfirm).Equal(x => x.Password).WithMessage("Password do not match");
 
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Name can not be empty");
+            RuleFor(x => x.FullName).NotEmpty().WithMessage("Name can not be empty");
 
             RuleFor(x => x.UserName).NotEmpty().WithMessage("UserName can not be empty.").MinimumLength(3).MaximumLength(20).WithMessage("Minimum 3, maximum 50 character");
         }

@@ -28,6 +28,9 @@ namespace simple_business_to_business.InfrastructureLayer.UnitOfWork.Concrete
         private ICompanyRepository _companyRepository;
         public ICompanyRepository CompanyRepository => _companyRepository ?? (_companyRepository = new CompanyRepository(_context));
 
+        private IAppUserRepository _appUserRepository;
+        public IAppUserRepository AppUser => _appUserRepository ?? (_appUserRepository = new AppUserRepository(_context));
+
         public async Task Commit() => await _context.SaveChangesAsync();
 
         private bool isDispose = false;
