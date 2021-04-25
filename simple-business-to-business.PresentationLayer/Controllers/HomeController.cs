@@ -16,14 +16,13 @@ namespace simple_business_to_business.PresentationLayer.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private readonly IAppUserService _userService;
-
-        
+        private readonly IAppUserService _appUserService;
+         
 
         public HomeController(ILogger<HomeController> logger, IAppUserService userService)
         {
             _logger = logger;
-            _userService = userService;
+            _appUserService = userService;
         }
         [HttpGet,Authorize]
         public IActionResult Index()
@@ -32,19 +31,23 @@ namespace simple_business_to_business.PresentationLayer.Controllers
         }
         public IActionResult LogOut()
         {
-            _userService.LogOut();
+            _appUserService.LogOut();
             
             return RedirectToAction("Index", "Home");
         }
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
+         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        [HttpGet, Authorize(Roles ="admin")]
+        public async Task<IActionResult> UsersAccount(int pageindex=1)
+        {
+            var userlist = await _appUserService.ListUser(pageindex);
+            return View(userlist);            
+        }
+
+
     }
 }

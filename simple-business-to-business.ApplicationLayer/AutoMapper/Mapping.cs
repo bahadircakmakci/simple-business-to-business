@@ -15,6 +15,9 @@ namespace simple_business_to_business.ApplicationLayer.AutoMapper
             CreateMap<AppUsers, LoginDTO>().ReverseMap();
             CreateMap<AppUsers, SearchUserDTO>().ReverseMap();
             CreateMap<AppUsers, EditProfileDTO>().ReverseMap();
+            CreateMap<AppUsers, ListUserDTO>().ReverseMap();
+
+            CreateMap<Companies, CompaniesDto>().ReverseMap();
         }
     }
 }

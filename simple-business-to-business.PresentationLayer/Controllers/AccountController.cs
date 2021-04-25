@@ -24,6 +24,11 @@ namespace simple_business_to_business.PresentationLayer.Controllers
         {
             return View();
         }
+        [HttpGet, AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
         [HttpPost, AllowAnonymous]
         public async Task<IActionResult> Login(LoginDTO model, string returnUrl)
         {
@@ -76,5 +81,7 @@ namespace simple_business_to_business.PresentationLayer.Controllers
             if (Url.IsLocalUrl(returnUrl)) return Redirect(returnUrl);
             else return RedirectToAction(nameof(HomeController.Index), "Home");
         }
+
+
     }
 }

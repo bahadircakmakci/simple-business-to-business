@@ -393,7 +393,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "integer", nullable: false),
-                    RoleId = table.Column<int>(type: "integer", nullable: false)
+                    RoleId = table.Column<int>(type: "integer", nullable: false),
+                    Discriminator = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -635,6 +636,31 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Name", "NormalizedName", "Status", "UpdateDate" },
+                values: new object[,]
+                {
+                    { 1, "80368f2c-5632-481f-b70c-c2a1d09eb7aa", new DateTime(2021, 4, 25, 13, 28, 13, 355, DateTimeKind.Local).AddTicks(8450), null, "admin", "ADMİN", 1, null },
+                    { 2, "311b72cd-04a5-4d6d-a072-127ec42d626d", new DateTime(2021, 4, 25, 13, 28, 13, 356, DateTimeKind.Local).AddTicks(635), null, "plasiyer", "PLASİYER", 1, null },
+                    { 3, "f0d60f5c-3fbf-4c34-88a5-1097dd903f2d", new DateTime(2021, 4, 25, 13, 28, 13, 356, DateTimeKind.Local).AddTicks(657), null, "member", "MEMBER", 1, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "CompaniesId", "CompanyId", "CompanyName", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Email", "EmailConfirmed", "FullName", "ImagePath", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PlasiyerCode", "SecurityStamp", "Status", "TwoFactorEnabled", "UpdateDate", "UserName" },
+                values: new object[] { 1, 0, null, 1, "DefaultCompany", "49795b95-81ac-49f8-935c-81a888545ca5", new DateTime(2021, 4, 25, 13, 28, 13, 356, DateTimeKind.Local).AddTicks(4814), null, "admin@simpleb2b.com", false, "Admin Admin", "/images/users/default.jpg", false, null, "admin@simpleb2b.com", "ADMİN", "AQAAAAEAACcQAAAAEBZ/kkN+2uVSqiZOfowGExGjc8qRLjIfAEPfZaBXNZeUJP+OTeok6Mfo8h4q8iFM4Q==", null, false, 0, "simpleb2badmin", 1, false, null, "admin" });
+
+            migrationBuilder.InsertData(
+                table: "Companies",
+                columns: new[] { "Id", "AccountingCode", "Address", "City", "CompanyName", "CreateDate", "DeleteDate", "Fax", "Phone1", "Phone2", "PlasiyerCode", "RiskLimit", "State", "Status", "TaskAdress", "TaxNumber", "TotalBalance", "TotalRiskLimit", "UpdateDate" },
+                values: new object[] { 1, "1111111111", "deneme", "İstanbul", "DefaultCompany", new DateTime(2021, 4, 25, 13, 28, 13, 353, DateTimeKind.Local).AddTicks(9960), null, null, null, null, null, 0m, "Eyüp", 1, null, null, 0m, 0m, null });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId", "Discriminator" },
+                values: new object[] { 1, 1, "AppUserManagerRoles" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

@@ -19,5 +19,7 @@ namespace simple_business_to_business.ApplicationLayer.Services.Interfaces
         Task EditUser(EditProfileDTO editProfileDTO);     
         Task<List<SearchUserDTO>> SearchUser(string keyword, int pageIndex);
 
+        Task<List<ListUserDTO>> ListUser(int pageIndex);
+
     }
 }

@@ -10,7 +10,7 @@ using simple_business_to_business.InfrastructureLayer.Context;
 namespace simple_business_to_business.InfrastructureLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210418200351_mig1")]
+    [Migration("20210425102814_mig1")]
     partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -96,11 +96,17 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUserRole<int>");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
@@ -160,6 +166,35 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ConcurrencyStamp = "80368f2c-5632-481f-b70c-c2a1d09eb7aa",
+                            CreateDate = new DateTime(2021, 4, 25, 13, 28, 13, 355, DateTimeKind.Local).AddTicks(8450),
+                            Name = "admin",
+                            NormalizedName = "ADMİN",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ConcurrencyStamp = "311b72cd-04a5-4d6d-a072-127ec42d626d",
+                            CreateDate = new DateTime(2021, 4, 25, 13, 28, 13, 356, DateTimeKind.Local).AddTicks(635),
+                            Name = "plasiyer",
+                            NormalizedName = "PLASİYER",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ConcurrencyStamp = "f0d60f5c-3fbf-4c34-88a5-1097dd903f2d",
+                            CreateDate = new DateTime(2021, 4, 25, 13, 28, 13, 356, DateTimeKind.Local).AddTicks(657),
+                            Name = "member",
+                            NormalizedName = "MEMBER",
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("simple_business_to_business.DomainLayer.Entities.Concrete.AppUsers", b =>
@@ -259,6 +294,31 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            CompanyId = 1,
+                            CompanyName = "DefaultCompany",
+                            ConcurrencyStamp = "49795b95-81ac-49f8-935c-81a888545ca5",
+                            CreateDate = new DateTime(2021, 4, 25, 13, 28, 13, 356, DateTimeKind.Local).AddTicks(4814),
+                            Email = "admin@simpleb2b.com",
+                            EmailConfirmed = false,
+                            FullName = "Admin Admin",
+                            ImagePath = "/images/users/default.jpg",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "admin@simpleb2b.com",
+                            NormalizedUserName = "ADMİN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBZ/kkN+2uVSqiZOfowGExGjc8qRLjIfAEPfZaBXNZeUJP+OTeok6Mfo8h4q8iFM4Q==",
+                            PhoneNumberConfirmed = false,
+                            PlasiyerCode = 0,
+                            SecurityStamp = "simpleb2badmin",
+                            Status = 1,
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("simple_business_to_business.DomainLayer.Entities.Concrete.Basket", b =>
@@ -448,6 +508,22 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccountingCode = "1111111111",
+                            Address = "deneme",
+                            City = "İstanbul",
+                            CompanyName = "DefaultCompany",
+                            CreateDate = new DateTime(2021, 4, 25, 13, 28, 13, 353, DateTimeKind.Local).AddTicks(9960),
+                            RiskLimit = 0m,
+                            State = "Eyüp",
+                            Status = 1,
+                            TotalBalance = 0m,
+                            TotalRiskLimit = 0m
+                        });
                 });
 
             modelBuilder.Entity("simple_business_to_business.DomainLayer.Entities.Concrete.CompanyDiscount", b =>
@@ -962,6 +1038,20 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SubCategories");
+                });
+
+            modelBuilder.Entity("simple_business_to_business.DomainLayer.Entities.Concrete.AppUserManagerRoles", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUserRole<int>");
+
+                    b.HasDiscriminator().HasValue("AppUserManagerRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            RoleId = 1
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

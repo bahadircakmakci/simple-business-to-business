@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using simple_business_to_business.ApplicationLayer.Modes.DTOs;
 using simple_business_to_business.ApplicationLayer.Services.Interfaces;
 using simple_business_to_business.DomainLayer.Entities.Concrete;
@@ -22,7 +23,7 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
         private readonly UserManager<AppUsers> _userManager;
         private readonly SignInManager<AppUsers> _signInManager;
 
-        public AppUserService(IUnitOfWork unitOfWork,                           
+        public AppUserService(IUnitOfWork unitOfWork,
                               IMapper mapper,
                               UserManager<AppUsers> userManager,
                               SignInManager<AppUsers> signInManager)
@@ -33,7 +34,7 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
             _signInManager = signInManager;
         }
 
-        public  Task DeleteUser(params object[] parameters)
+        public Task DeleteUser(params object[] parameters)
         {
             throw new NotImplementedException();
         }
@@ -80,23 +81,23 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
 
         public async Task<EditProfileDTO> GetById(int id)
         {
-          return  _mapper.Map<EditProfileDTO>(await _unitOfWork.AppUser.GetById(id));
+            return _mapper.Map<EditProfileDTO>(await _unitOfWork.AppUser.GetById(id));
         }
 
         public async Task<SignInResult> Login(LoginDTO loginDTO)
         {
-            var usr = await _unitOfWork.AppUser.GetFilteredFirstOrDefault(selector:x=>x.Status ,expression:x=>x.UserName==loginDTO.UserName);
-            if (usr!=null)
+            var usr = await _unitOfWork.AppUser.GetFilteredFirstOrDefault(selector: x => x.Status, expression: x => x.UserName == loginDTO.UserName);
+            if (usr != null)
             {
-                if (usr!=Status.Passive)
+                if (usr != Status.Passive)
                 {
-                    return await _signInManager.PasswordSignInAsync(loginDTO.UserName, loginDTO.Password, loginDTO.RememberMe, false);
+                    return await _signInManager.PasswordSignInAsync(loginDTO.UserName.ToUpper(), loginDTO.Password, loginDTO.RememberMe, false);
                 }
                 else
                 {
                     return null;
                 }
-               
+
             }
             else
             {
@@ -111,13 +112,13 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
 
         public async Task<IdentityResult> Register(RegisterDTO registerDTO)
         {
-             
+
             var user = _mapper.Map<AppUsers>(registerDTO);
 
             var result = await _userManager.CreateAsync(user, registerDTO.Password);
 
             //if (result.Succeeded)  await _signInManager.SignInAsync(user, false);
-                 
+
             return result;
         }
 
@@ -138,9 +139,33 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
             return users;
         }
 
+        public async Task<List<ListUserDTO>> ListUser(int pageIndex)
+        {
+            var users = await _unitOfWork.AppUser.GetFilteredList(
+               selector: x => new ListUserDTO
+               {
+                   Id = x.Id,
+                   FullName = x.FullName,
+                   UserName = x.UserName,
+                   ImagePath = x.ImagePath,
+                   CompanyId=x.CompanyId,
+                   Companies= _mapper.Map<CompaniesDto>(x.Companies),
+                   Email=x.Email,
+                   PhoneNumber=x.PhoneNumber,
+                   PlasiyerCode=x.PlasiyerCode,
+                   Status=x.Status
+               },
+               expression:null,
+               include:x=>x.Include(z=>z.Companies),
+               pageIndex: pageIndex,
+               pageSize: 10);
+
+            return users;
+        }
+
         public async Task<int> UserIdFromName(string userName)
         {
-           return await _unitOfWork.AppUser.GetFilteredFirstOrDefault(selector: x => x.Id, expression: x => x.UserName == userName);
+            return await _unitOfWork.AppUser.GetFilteredFirstOrDefault(selector: x => x.Id, expression: x => x.UserName == userName);
         }
     }
 }

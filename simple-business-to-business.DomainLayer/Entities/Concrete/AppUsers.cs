@@ -3,6 +3,7 @@ using simple_business_to_business.DomainLayer.Entities.Interfaces;
 using simple_business_to_business.DomainLayer.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace simple_business_to_business.DomainLayer.Entities.Concrete
@@ -17,6 +18,7 @@ namespace simple_business_to_business.DomainLayer.Entities.Concrete
         public string ImagePath { get; set; } = "/images/users/default.jpg";
 
         public int CompanyId { get; set; }
+        [ForeignKey(nameof(CompanyId))]
         public Companies Companies { get; set; }
 
         private DateTime _createDate = DateTime.Now;
