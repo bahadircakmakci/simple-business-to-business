@@ -59,5 +59,24 @@ namespace simple_business_to_business.InfrastructureLayer.Repositories.Concrete.
         }
 
         public void Update(T entity) => _context.Entry<T>(entity).State = EntityState.Modified;
+
+        public async Task Commit() => await _context.SaveChangesAsync();
+
+        private bool isDispose = false;
+
+        public async ValueTask DisposeAsync()
+        {
+            if (!isDispose)
+            {
+                isDispose = true;
+                await DisposeAsync(true);
+                GC.SuppressFinalize(this); //https://docs.microsoft.com/en-us/dotnet/api/system.gc.suppressfinalize?view=net-5.0, https://stackoverflow.com/questions/151051/when-should-i-use-gc-suppressfinalize
+            }
+        }
+
+        protected async ValueTask DisposeAsync(bool disposing)
+        {
+            if (disposing) await _context.DisposeAsync();
+        }
     }
 }

@@ -34,7 +34,7 @@
                             <form asp-controller="Company" asp-action="CompanyAdd" method="post">
                                 <div asp-validation-summary="All" class="text-danger"></div>
                                 <div class="input-group mb-3">
-                                    <input asp-for="CompanyName" type="text" class="form-control" placeholder="Firma Adı">
+                                    <input asp-for="CompanyName" type="text" class="form-control text-uppercase" maxlength="50" placeholder="Firma Adı">
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fa fa-info"></span>
@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <input asp-for="AccountingCode" type="text" class="form-control" placeholder="Muhasebe Kodu">
+                                    <input asp-for="AccountingCode" type="text" class="form-control" maxlength="50"  placeholder="Muhasebe Kodu">
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fa fa-info"></span>
@@ -50,30 +50,123 @@
                                     </div>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <input asp-for="Address" type="text" class="form-control" placeholder="Adress">
+                                    <input asp-for="Address" type="text" class="form-control text-uppercase" maxlength="250" placeholder="Adress">
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fa fa-info"></span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="input-group mb-3">
-                                    <input asp-for="City" type="text" class="form-control" placeholder="İl">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fa fa-info"></span>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input asp-for="City" type="text" class="form-control text-uppercase" maxlength="20" placeholder="İl">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-info"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input asp-for="State" type="text" class="form-control" maxlength="20" placeholder="İlçe">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-info"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input asp-for="Phone1" type="tel" class="form-control" maxlength="15" placeholder="Tel1">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-info"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input asp-for="Phone2" type="tel" class="form-control" maxlength="15" placeholder="Tel2">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-info"></span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="input-group mb-3">
-                                    <input asp-for="State" type="text" class="form-control" placeholder="İlçe">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="fa fa-info"></span>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input asp-for="Fax" type="tel" class="form-control" maxlength="15" placeholder="Fax">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-info"></span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input asp-for="PlasiyerCode" type="number" class="form-control" maxlength="10" placeholder="Plasiyer Kodu">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-info"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input asp-for="RiskLimit" type="number" class="form-control" placeholder="Risk Limiti">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-info"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input asp-for="TotalRiskLimit" type="number" class="form-control" placeholder="Toplam Risk Limiti">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-info"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input asp-for="TaxNumber" type="number" class="form-control" placeholder="Vergi No">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-info"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input asp-for="TaxAdress" type="text" class="form-control" maxlength="50" placeholder="Vergi Dairesi">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-info"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                     <button type="submit" class="btn btn-success">Kaydet</button>
+                                </div>
                             </form>
                             
 

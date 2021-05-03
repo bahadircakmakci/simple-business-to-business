@@ -34,5 +34,8 @@ namespace simple_business_to_business.DomainLayer.Repositories.Interfaces.Base
                                                          bool disableTracking = true);
 
         Task<bool> Any(Expression<Func<T, bool>> expression);
+
+        Task Commit();
+        ValueTask DisposeAsync();
     }
 }

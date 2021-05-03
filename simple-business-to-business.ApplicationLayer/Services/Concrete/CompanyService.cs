@@ -24,6 +24,9 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
         public async Task AddCompany(CompaniesDto AddCompany)
         {
             await _companyRepository.Add(_Mapper.Map<Companies>(AddCompany));
+            await _companyRepository.Commit();
+           await _companyRepository.DisposeAsync();
+           
         }
 
         public async Task<int> CompanyIdFromName(string companyname)
@@ -63,7 +66,7 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
                    Phone2=x.Phone2,
                    RiskLimit=x.RiskLimit,
                    State=x.State,
-                   TaskAdress=x.TaskAdress,
+                    TaxAdress=x.TaxAdress,
                    TaxNumber=x.TaxNumber,
                    TotalBalance=x.TotalBalance,
                    TotalRiskLimit=x.TotalRiskLimit,

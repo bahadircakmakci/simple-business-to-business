@@ -20,7 +20,7 @@ namespace simple_business_to_business.DomainLayer.Entities.Concrete
         public string Fax { get; set; }
         public string AccountingCode { get; set; }
         public string TaxNumber { get; set; }
-        public string TaskAdress { get; set; }
+        public string TaxAdress { get; set; }
         public string PlasiyerCode { get; set; }
         public decimal RiskLimit { get; set; }
         public decimal TotalRiskLimit { get; set; }

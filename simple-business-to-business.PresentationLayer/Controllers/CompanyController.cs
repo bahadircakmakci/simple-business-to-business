@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using simple_business_to_business.ApplicationLayer.Modes.DTOs;
 using simple_business_to_business.ApplicationLayer.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,21 @@ namespace simple_business_to_business.PresentationLayer.Controllers
         [HttpGet, Authorize(Roles = "admin")]
         public IActionResult CompanyAdd()
         {
+            return View();
+        }
+        [HttpPost, Authorize(Roles = "admin")]
+        public async Task<IActionResult> CompanyAdd(CompaniesDto model)
+        {
+            if (ModelState.IsValid)
+            {
+                await  _companyService.AddCompany(model);
+                return RedirectToAction("CompanyList", "Company");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Kayıt Ederken Hata Oluştu");
+            }
+
             return View();
         }
     }
