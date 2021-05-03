@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUsers> _signInManager
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -185,9 +187,9 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-         with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                              
+
                             <a asp-controller="Home" asp-action="Index" class="nav-link">
                                 <i class="nav-icon fa fa-caret-square-down"></i>
                                 <p>
@@ -220,10 +222,17 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a asp-controller="Home" asp-action="UsersCompany" class="nav-link">
-                                        <i class="fa fa-business-time nav-icon"></i>
-                                        <p>Firmalar</p>
-                                    </a>
+
+                                   
+                                        <a asp-controller="Company" asp-action="CompanyList"  class="nav-link">
+                                            <i class="fa fa-business-time nav-icon"></i>
+                                            Firmalar
+                                        </a>
+
+                                  
+
+
+
                                 </li>
                             </ul>
                         </li>
@@ -315,5 +324,6 @@
     <!-- AdminLTE for demo purposes -->
 
     <script src="~/assets/scripts/demo.js"></script>
+    @RenderSection("Scripts", required: false);
 </body>
 </html>

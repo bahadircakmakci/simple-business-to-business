@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Companies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">AnaSayfaya Dön</a></li>
+                        <li class="breadcrumb-item active">Kayıtlı Firmalar</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title"><a asp-controller="Company" asp-action="CompanyAdd">Yeni Firma Eklemek için Tıklayın</a></h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">                            
+                            <form asp-controller="Company" asp-action="CompanyList" method="post">
+                               
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Vergi No</th>
+                                            <th>Firma Adı</th>
+                                            <th>Muhasebe Kodu</th>
+                                            <th>İl</th>
+                                            <th>İlçe</th>
+                                            <th>Düzenle</th>
+                                            <th>Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="CompanysResult">
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Vergi No</th>
+                                            <th>Firma Adı</th>
+                                            <th>Muhasebe Kodu</th>
+                                            <th>İl</th>
+                                            <th>İlçe</th>
+                                            <th>Düzenle</th>
+                                            <th>Sil</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </form>
+                           
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- /.content -->
+</div>
+
+
+
+@section Scripts{
+
+    <script>
+
+    var controllerName = '@(ViewContext.RouteData.Values["Controller"].ToString())';
+    var actionName = '@(ViewContext.RouteData.Values["Action"].ToString())';
+    </script>
+
+    <script src="~/assets/scripts/getCompanyList.js"></script>
+
+}

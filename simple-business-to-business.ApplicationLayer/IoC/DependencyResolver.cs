@@ -20,14 +20,14 @@ namespace simple_business_to_business.ApplicationLayer.IoC
         {
             //Serivces
             builder.RegisterType<AppUserService>().As<IAppUserService>().InstancePerLifetimeScope();
-
+            builder.RegisterType<CompanyService>().As<ICompanyService>().InstancePerLifetimeScope();
 
             //UnitofWork
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
 
             //Repository
             builder.RegisterType<AppUserRepository>().As<IAppUserRepository>().InstancePerLifetimeScope();
-
+            builder.RegisterType<CompanyRepository>().As<ICompanyRepository>().InstancePerLifetimeScope();
 
             //Validation
             builder.RegisterType<LoginValidation>().As<IValidator<LoginDTO>>().InstancePerLifetimeScope();
