@@ -14,5 +14,6 @@ namespace simple_business_to_business.ApplicationLayer.Services.Interfaces
         Task AddCompany(CompaniesDto AddCompany);
         Task DeleteCompany(int id);
         Task<List<CompaniesDto>> ListCompany(int pageIndex);
+        Task<List<CompaniesDto>> GetAll();
     }
 }

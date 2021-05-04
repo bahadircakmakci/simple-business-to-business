@@ -1,6 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Companies";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var _currentpage = ViewBag.Currentpage;
+    var _totalpage = ViewBag.Totalpage;
 }
 
 <div class="content-wrapper">
@@ -29,12 +31,13 @@
                             <h3 class="card-title"><a asp-controller="Company" asp-action="CompanyAdd">Yeni Firma Eklemek için Tıklayın</a></h3>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body">                            
-                            <form asp-controller="Company" asp-action="CompanyList" method="post">
-                               
+                        <div class="card-body">
+                            <form asp-controller="Company" asp-action="CompanyList" asp-route-pageIndex="@_currentpage" method="post">
+                                
                                 <table class="table table-hover table-bordered">
                                     <thead>
                                         <tr>
+                                            <th>Id</th>
                                             <th>Vergi No</th>
                                             <th>Firma Adı</th>
                                             <th>Muhasebe Kodu</th>
@@ -46,20 +49,12 @@
                                     </thead>
                                     <tbody id="CompanysResult">
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Vergi No</th>
-                                            <th>Firma Adı</th>
-                                            <th>Muhasebe Kodu</th>
-                                            <th>İl</th>
-                                            <th>İlçe</th>
-                                            <th>Düzenle</th>
-                                            <th>Sil</th>
-                                        </tr>
+                                    <tfoot id="PageCompanysResult">
+
                                     </tfoot>
                                 </table>
                             </form>
-                           
+
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -78,7 +73,8 @@
     <script>
 
     var controllerName = '@(ViewContext.RouteData.Values["Controller"].ToString())';
-    var actionName = '@(ViewContext.RouteData.Values["Action"].ToString())';
+        var actionName = '@(ViewContext.RouteData.Values["Action"].ToString())';
+        var totalpage = '@_totalpage';
     </script>
 
     <script src="~/assets/scripts/getCompanyList.js"></script>

@@ -45,6 +45,11 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
               _companyRepository.Update(_Mapper.Map<Companies>(editCompanyDTO));
         }
 
+        public async Task<List<CompaniesDto>> GetAll()
+        {
+            return _Mapper.Map<List<CompaniesDto>>(await _companyRepository.GetAll());
+        }
+
         public async Task<CompaniesDto> GetById(int id)
         {
             return _Mapper.Map<CompaniesDto>(await _companyRepository.GetById(id));

@@ -19,8 +19,25 @@ namespace simple_business_to_business.PresentationLayer.Controllers
             _companyService = companyService;
         }
         [HttpGet, Authorize(Roles = "admin")]
-        public IActionResult CompanyList()
+        public async Task<IActionResult> CompanyList(int totalpage,int pageIndex=1)
         {
+            
+            if (pageIndex==0)
+            {
+                pageIndex = 1;
+            }
+            ViewBag.Currentpage = pageIndex;
+
+            var totalcompany = _companyService.GetAll().Result.Count();
+            if (totalcompany%10==0)
+            {
+                ViewBag.Totalpage = totalcompany/10;
+            }
+            else
+            {
+                ViewBag.Totalpage = (totalcompany / 10)+1;
+            }
+           
             return View();
         }
 
