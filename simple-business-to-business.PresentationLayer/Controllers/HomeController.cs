@@ -43,12 +43,35 @@ namespace simple_business_to_business.PresentationLayer.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
         [HttpGet, Authorize(Roles = "admin")]
+        public  IActionResult UsersAccount(int totalpage, int pageIndex = 1)
+        {
+            
+            if (pageIndex == 0)
+            {
+                pageIndex = 1;
+            }
+            ViewBag.Currentpage = pageIndex;
+
+            var totalcompany = _appUserService.GetAll().Result.Count();
+            if (totalcompany % 10 == 0)
+            {
+                ViewBag.Totalpage = totalcompany / 10;
+            }
+            else
+            {
+                ViewBag.Totalpage = (totalcompany / 10) + 1;
+            }
+
+            return View();
+             
+        }
+        [HttpPost, Authorize(Roles = "admin")]
         public async Task<IActionResult> UsersAccount(int pageindex = 1)
         {
             var userlist = await _appUserService.ListUser(pageindex);
-            return View(userlist);
+            return Json(userlist, new JsonSerializerSettings());
         }
-        
+
 
 
     }

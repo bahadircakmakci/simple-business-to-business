@@ -162,7 +162,10 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
 
             return users;
         }
-
+        public async Task<List<ListUserDTO>> GetAll()
+        {
+            return _mapper.Map<List<ListUserDTO>>(await _unitOfWork.AppUser.GetAll());
+        }
         public async Task<int> UserIdFromName(string userName)
         {
             return await _unitOfWork.AppUser.GetFilteredFirstOrDefault(selector: x => x.Id, expression: x => x.UserName == userName);

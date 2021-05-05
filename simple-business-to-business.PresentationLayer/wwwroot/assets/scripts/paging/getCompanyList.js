@@ -81,12 +81,7 @@ function loadCompanyResults(pageIndex, controllerName, actionName, totalpage) {
 
                     }
                 }
-
-                
-
-
-
-
+                 
                 pagigng += '<button type="button" onclick="Companylist(' + totalpage + ')" class="btn btn-info ml-2"> Son </button>'
                 pagigng += '</th>';
 

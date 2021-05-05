@@ -20,6 +20,7 @@ namespace simple_business_to_business.ApplicationLayer.Services.Interfaces
         Task<List<SearchUserDTO>> SearchUser(string keyword, int pageIndex);
 
         Task<List<ListUserDTO>> ListUser(int pageIndex);
+        Task<List<ListUserDTO>> GetAll();
 
     }
 }
