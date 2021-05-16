@@ -17,7 +17,7 @@ namespace simple_business_to_business.DomainLayer.Entities.Concrete
         public int PlasiyerCode { get; set; }
         public string ImagePath { get; set; } = "/images/users/default.jpg";
 
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; }
         [ForeignKey(nameof(CompanyId))]
         public Companies Companies { get; set; }
 

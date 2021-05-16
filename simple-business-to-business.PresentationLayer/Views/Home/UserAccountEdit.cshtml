@@ -1,0 +1,97 @@
+﻿@model EditProfileDTO
+@{
+    ViewData["Title"] = "UserAccountEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+
+
+<div class="content-wrapper">
+    
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <form asp-controller="Home" asp-action="UserAccountEdit" method="post">
+                                <input type="hidden" asp-for="Id" />
+                                <div asp-validation-summary="All" class="text-warning"></div>
+                                <div class="input-group mb-3">
+                                    <input asp-for="FullName" type="text" class="form-control" placeholder="Full name">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-user"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <input asp-for="Email" type="email" class="form-control" placeholder="Email">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-envelope"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input asp-for="UserName" type="text" class="form-control" placeholder="User Name">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-user"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <select class="form-control" asp-for="CompanyId" asp-items="@((IEnumerable<SelectListItem>)ViewData["Companies"])">
+                                        <option value="0">Firma Seçiniz...</option>
+                                    </select>
+                                     
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input asp-for="Password" type="password" class="form-control" placeholder="Password">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-lock"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Retype password">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-lock"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="icheck-primary">
+
+                                            <label for="agreeTerms">
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-4">
+                                        <button type="submit" class="btn btn-primary btn-block">Save</button>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                            </form>
+                        </div>
+                        <a asp-action="UsersAccount" asp-controller="Home" class="btn btn-block btn-dark btn-sm">Kullanıcılar Listesine Dön</a>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+ 
+  

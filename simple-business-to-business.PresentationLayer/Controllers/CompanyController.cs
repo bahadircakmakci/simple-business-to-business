@@ -68,5 +68,34 @@ namespace simple_business_to_business.PresentationLayer.Controllers
 
             return View();
         }
+        [HttpGet, Authorize(Roles = "admin")]
+        public async Task<IActionResult> CompanyEdit(int id)
+        {
+            return View(await _companyService.GetById(id));
+        }
+        [HttpPost, Authorize(Roles = "admin")]
+        public async Task<IActionResult> CompanyEdit(CompaniesDto model)
+        {
+            if (ModelState.IsValid)
+            {
+                await _companyService.EditCompany(model);
+                
+            }
+            else
+            {
+                ModelState.AddModelError("", "Güncellerken Hata Oluştu");
+            }
+
+
+
+            return RedirectToAction("CompanyList", "Company");
+        }
+        [HttpGet, Authorize(Roles = "admin")]
+        public async Task<IActionResult> CompanyDelete(int id)
+        {
+            await _companyService.DeleteCompany(id);
+            return RedirectToAction("CompanyList", "Company");
+        }
+
     }
 }

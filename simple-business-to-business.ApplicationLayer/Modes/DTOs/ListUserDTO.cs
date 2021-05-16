@@ -15,7 +15,7 @@ namespace simple_business_to_business.ApplicationLayer.Modes.DTOs
         public string FullName { get; set; }
         public int PlasiyerCode { get; set; }
 
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; }
         public CompaniesDto Companies { get; set; }
 
         public Status Status { get; set; }

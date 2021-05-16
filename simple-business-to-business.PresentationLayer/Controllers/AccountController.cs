@@ -49,10 +49,10 @@ namespace simple_business_to_business.PresentationLayer.Controllers
 
             return View();
         }
-        [AllowAnonymous]
+        [HttpGet,AllowAnonymous]
         public IActionResult Register()
         {
-            if (User.Identity.IsAuthenticated) return RedirectToAction(nameof(HomeController.Index), "Home");
+            //if (User.Identity.IsAuthenticated) return RedirectToAction(nameof(HomeController.Index), "Home");
             return View();
         }
 
@@ -67,6 +67,7 @@ namespace simple_business_to_business.PresentationLayer.Controllers
 
                 if (result.Succeeded) {
                     ModelState.AddModelError(string.Empty, "Başarı ile  Kayıt Olundu... ancak Kullanıcınız onaylanana kadar giriş yapamazssınız!");
+                    if (User.Identity.IsAuthenticated) return RedirectToAction(nameof(HomeController.UsersAccount), "Home");
                 }
                 
 

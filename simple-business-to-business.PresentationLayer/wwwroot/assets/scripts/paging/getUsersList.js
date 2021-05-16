@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-
     Userlist();
 });
 
@@ -28,12 +27,19 @@ function loadUserResults(pageIndex, controllerName, actionName, totalpage) {
            
                     html += '<td>' + item.UserName + '</td>';
                     html += '<td>' + item.Email + '</td>';
-                    html += '<td>' + item.Companies.CompanyName + '</td>';
-                    html += '<td>' + item.Status + '</td>';
+                    if (item.Companies == null) {
+                        html += '<td>Firma İle Eşleştirirniz...</td>';
+                    }
+                    else {
+                        html += '<td>' + item.Companies.CompanyName + '</td>';
+                    }
+                    
+                    if (item.Status == 1) html += '<td>Aktif</td>'; 
+                    else html += '<td>Pasif</td>';
                
 
-                    html += '<td>' + '<a href="/Home/UserEdit/' + item.Id + '">Düzenle</a>' + '</td>';
-                    html += '<td>' + '<a href="/Home/UserDelete/' + item.Id + '">Sil</a>' + '</td>';
+                    html += '<td>' + '<a href="/Home/UserAccountEdit/' + item.Id + '">Düzenle</a>' + '</td>';
+                    html += '<td>' + '<a href="/Home/UserAccountDelete/' + item.Id + '">Sil</a>' + '</td>';
 
                     html += '</tr>';
                 });

@@ -169,8 +169,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "80368f2c-5632-481f-b70c-c2a1d09eb7aa",
-                            CreateDate = new DateTime(2021, 4, 25, 13, 28, 13, 355, DateTimeKind.Local).AddTicks(8450),
+                            ConcurrencyStamp = "39d86889-45c7-4e61-90ee-fa6bfe0d8d75",
+                            CreateDate = new DateTime(2021, 5, 16, 12, 56, 24, 336, DateTimeKind.Local).AddTicks(2919),
                             Name = "admin",
                             NormalizedName = "ADMİN",
                             Status = 1
@@ -178,8 +178,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "311b72cd-04a5-4d6d-a072-127ec42d626d",
-                            CreateDate = new DateTime(2021, 4, 25, 13, 28, 13, 356, DateTimeKind.Local).AddTicks(635),
+                            ConcurrencyStamp = "04619ef1-f46e-49cb-bf2f-24423d34de04",
+                            CreateDate = new DateTime(2021, 5, 16, 12, 56, 24, 336, DateTimeKind.Local).AddTicks(5407),
                             Name = "plasiyer",
                             NormalizedName = "PLASİYER",
                             Status = 1
@@ -187,8 +187,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "f0d60f5c-3fbf-4c34-88a5-1097dd903f2d",
-                            CreateDate = new DateTime(2021, 4, 25, 13, 28, 13, 356, DateTimeKind.Local).AddTicks(657),
+                            ConcurrencyStamp = "180aa22a-c855-45c9-beb8-a9617c7ccd04",
+                            CreateDate = new DateTime(2021, 5, 16, 12, 56, 24, 336, DateTimeKind.Local).AddTicks(5431),
                             Name = "member",
                             NormalizedName = "MEMBER",
                             Status = 1
@@ -205,10 +205,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("CompaniesId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("CompanyId")
+                    b.Property<int?>("CompanyId")
                         .HasColumnType("integer");
 
                     b.Property<string>("CompanyName")
@@ -282,7 +279,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompaniesId");
+                    b.HasIndex("CompanyId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -300,8 +297,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                             AccessFailedCount = 0,
                             CompanyId = 1,
                             CompanyName = "DefaultCompany",
-                            ConcurrencyStamp = "49795b95-81ac-49f8-935c-81a888545ca5",
-                            CreateDate = new DateTime(2021, 4, 25, 13, 28, 13, 356, DateTimeKind.Local).AddTicks(4814),
+                            ConcurrencyStamp = "a456688c-080e-4dfe-8b98-b82bf0912856",
+                            CreateDate = new DateTime(2021, 5, 16, 12, 56, 24, 337, DateTimeKind.Local).AddTicks(701),
                             Email = "admin@simpleb2b.com",
                             EmailConfirmed = false,
                             FullName = "Admin Admin",
@@ -309,7 +306,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@simpleb2b.com",
                             NormalizedUserName = "ADMİN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBZ/kkN+2uVSqiZOfowGExGjc8qRLjIfAEPfZaBXNZeUJP+OTeok6Mfo8h4q8iFM4Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDzkxXKuNe0NSty1XtO2MMuTmP2aN1r2SqBoH7TSKmonwmgC4PrndTTeWRVEbfclHQ==",
                             PhoneNumberConfirmed = false,
                             PlasiyerCode = 0,
                             SecurityStamp = "simpleb2badmin",
@@ -488,7 +485,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("integer");
 
-                    b.Property<string>("TaskAdress")
+                    b.Property<string>("TaxAdress")
                         .HasColumnType("text");
 
                     b.Property<string>("TaxNumber")
@@ -515,7 +512,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                             Address = "deneme",
                             City = "İstanbul",
                             CompanyName = "DefaultCompany",
-                            CreateDate = new DateTime(2021, 4, 25, 13, 28, 13, 353, DateTimeKind.Local).AddTicks(9960),
+                            CreateDate = new DateTime(2021, 5, 16, 12, 56, 24, 333, DateTimeKind.Local).AddTicks(6756),
                             RiskLimit = 0m,
                             State = "Eyüp",
                             Status = 1,
@@ -1107,7 +1104,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 {
                     b.HasOne("simple_business_to_business.DomainLayer.Entities.Concrete.Companies", "Companies")
                         .WithMany()
-                        .HasForeignKey("CompaniesId");
+                        .HasForeignKey("CompanyId");
 
                     b.Navigation("Companies");
                 });

@@ -26,4 +26,10 @@
     <ProjectReference Include="..\simple-business-to-business.InfrastructureLayer\simple-business-to-business.InfrastructureLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\product\" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>

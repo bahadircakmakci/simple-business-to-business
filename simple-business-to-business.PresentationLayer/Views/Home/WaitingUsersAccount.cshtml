@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Kullanicilar";
+﻿
+@{
+    ViewData["Title"] = "WaitingUsersAccount";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var _currentpage = ViewBag.Currentpage;
     var _totalpage = ViewBag.Totalpage;
@@ -14,7 +15,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Kullanıcılar</li>
+                        <li class="breadcrumb-item active">Bekleyen Kullanıcılar</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -27,12 +28,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title"><a asp-controller="Account" asp-action="Register">Yeni Kullanıcı Eklemek için Tıklayın</a></h3>
-                        </div>
+                    
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form asp-controller="Home" asp-action="UsersAccount" asp-route-pageIndex="@_currentpage" method="post">
+                            <form asp-controller="Home" asp-action="WaitingUsersAccount" asp-route-pageIndex="@_currentpage" method="post">
 
                                 <table class="table table-hover table-bordered">
                                     <thead>

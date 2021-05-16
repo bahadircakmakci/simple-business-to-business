@@ -38,11 +38,13 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
         {
             var removecompany = await _companyRepository.GetById(id);
             _companyRepository.Delete(removecompany);
+            await _companyRepository.Commit();
         }
 
         public async Task EditCompany(CompaniesDto editCompanyDTO)
         {
               _companyRepository.Update(_Mapper.Map<Companies>(editCompanyDTO));
+            await _companyRepository.Commit();
         }
 
         public async Task<List<CompaniesDto>> GetAll()

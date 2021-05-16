@@ -42,8 +42,14 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
         public async Task EditUser(EditProfileDTO editProfileDTO)
         {
             var user = await _unitOfWork.AppUser.GetById(editProfileDTO.Id);
+
             if (user != null)
             {
+                if (editProfileDTO.CompanyId != null || editProfileDTO.CompanyId > 0)
+                {
+                    user.CompanyId = editProfileDTO.CompanyId;
+                    user.Status = Status.Active;
+                }
                 if (editProfileDTO.Image != null)
                 {
                     using var image = Image.Load(editProfileDTO.Image.OpenReadStream());
@@ -61,7 +67,7 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
 
                 if (editProfileDTO.UserName != null)
                 {
-                    var isUserNameExist = await _userManager.FindByNameAsync(editProfileDTO.UserName);
+                    var isUserNameExist = await _userManager.FindByNameAsync(editProfileDTO.UserName.ToUpper());
 
                     if (isUserNameExist == null) await _userManager.SetUserNameAsync(user, editProfileDTO.UserName);
                 }
@@ -148,15 +154,38 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
                    FullName = x.FullName,
                    UserName = x.UserName,
                    ImagePath = x.ImagePath,
-                   CompanyId=x.CompanyId,
-                   Companies= _mapper.Map<CompaniesDto>(x.Companies),
-                   Email=x.Email,
-                   PhoneNumber=x.PhoneNumber,
-                   PlasiyerCode=x.PlasiyerCode,
-                   Status=x.Status
+                   CompanyId = x.CompanyId,
+                   Companies = _mapper.Map<CompaniesDto>(x.Companies),
+                   Email = x.Email,
+                   PhoneNumber = x.PhoneNumber,
+                   PlasiyerCode = x.PlasiyerCode,
+                   Status = x.Status
                },
-               expression:null,
-               include:x=>x.Include(z=>z.Companies),
+               expression: x => x.CompanyId != null || x.CompanyId > 0,
+               include: x => x.Include(z => z.Companies),
+               pageIndex: pageIndex,
+               pageSize: 10);
+
+            return users;
+        }
+        public async Task<List<ListUserDTO>> WaitListUser(int pageIndex)
+        {
+            var users = await _unitOfWork.AppUser.GetFilteredList(
+               selector: x => new ListUserDTO
+               {
+                   Id = x.Id,
+                   FullName = x.FullName,
+                   UserName = x.UserName,
+                   ImagePath = x.ImagePath,
+                   CompanyId = x.CompanyId,
+                   Companies = _mapper.Map<CompaniesDto>(x.Companies),
+                   Email = x.Email,
+                   PhoneNumber = x.PhoneNumber,
+                   PlasiyerCode = x.PlasiyerCode,
+                   Status = x.Status
+               },
+               expression: x => x.CompanyId == null || x.CompanyId == 0,
+               include: x => x.Include(z => z.Companies),
                pageIndex: pageIndex,
                pageSize: 10);
 

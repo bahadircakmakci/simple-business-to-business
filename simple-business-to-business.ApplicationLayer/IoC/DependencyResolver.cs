@@ -21,6 +21,9 @@ namespace simple_business_to_business.ApplicationLayer.IoC
             //Serivces
             builder.RegisterType<AppUserService>().As<IAppUserService>().InstancePerLifetimeScope();
             builder.RegisterType<CompanyService>().As<ICompanyService>().InstancePerLifetimeScope();
+            builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
+
+
 
             //UnitofWork
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
@@ -28,6 +31,7 @@ namespace simple_business_to_business.ApplicationLayer.IoC
             //Repository
             builder.RegisterType<AppUserRepository>().As<IAppUserRepository>().InstancePerLifetimeScope();
             builder.RegisterType<CompanyRepository>().As<ICompanyRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<ProductRepository>().As<IProductRepository>().InstancePerLifetimeScope();
 
             //Validation
             builder.RegisterType<LoginValidation>().As<IValidator<LoginDTO>>().InstancePerLifetimeScope();
