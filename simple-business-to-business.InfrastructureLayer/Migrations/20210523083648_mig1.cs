@@ -115,25 +115,6 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SubCategories",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CategoyName = table.Column<string>(type: "text", nullable: true),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    ImagePath = table.Column<string>(type: "text", nullable: true),
-                    CreateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    DeleteDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    Status = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SubCategories", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -283,29 +264,16 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "SubCategories",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ProductCode = table.Column<string>(type: "text", nullable: true),
-                    ProductName = table.Column<string>(type: "text", nullable: true),
+                    CategoyName = table.Column<string>(type: "text", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    BrandId = table.Column<int>(type: "integer", nullable: false),
-                    BrandsId = table.Column<int>(type: "integer", nullable: true),
+                    ImagePath = table.Column<string>(type: "text", nullable: true),
                     MainCategoryId = table.Column<int>(type: "integer", nullable: false),
                     MainCategoriesId = table.Column<int>(type: "integer", nullable: true),
-                    SubCategoryId = table.Column<int>(type: "integer", nullable: false),
-                    SubCategoriesId = table.Column<int>(type: "integer", nullable: true),
-                    Vat = table.Column<decimal>(type: "numeric", nullable: false),
-                    CurrencyId = table.Column<int>(type: "integer", nullable: false),
-                    CurrenciesId = table.Column<int>(type: "integer", nullable: true),
-                    ListPrice = table.Column<decimal>(type: "numeric", nullable: false),
-                    ListPriceVat = table.Column<decimal>(type: "numeric", nullable: false),
-                    Quantity = table.Column<int>(type: "integer", nullable: false),
-                    CriticalQuantity = table.Column<int>(type: "integer", nullable: false),
-                    MaxSellerQuantity = table.Column<int>(type: "integer", nullable: false),
-                    CompaniesId = table.Column<int>(type: "integer", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     DeleteDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
@@ -313,35 +281,11 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_SubCategories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Brands_BrandsId",
-                        column: x => x.BrandsId,
-                        principalTable: "Brands",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Products_Companies_CompaniesId",
-                        column: x => x.CompaniesId,
-                        principalTable: "Companies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Products_Currencies_CurrenciesId",
-                        column: x => x.CurrenciesId,
-                        principalTable: "Currencies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Products_MainCategories_MainCategoriesId",
+                        name: "FK_SubCategories_MainCategories_MainCategoriesId",
                         column: x => x.MainCategoriesId,
                         principalTable: "MainCategories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Products_SubCategories_SubCategoriesId",
-                        column: x => x.SubCategoriesId,
-                        principalTable: "SubCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -465,6 +409,66 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         principalTable: "Companies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ProductCode = table.Column<string>(type: "text", nullable: true),
+                    ProductName = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    BrandId = table.Column<int>(type: "integer", nullable: false),
+                    MainCategoryId = table.Column<int>(type: "integer", nullable: false),
+                    SubCategoryId = table.Column<int>(type: "integer", nullable: false),
+                    Vat = table.Column<decimal>(type: "numeric", nullable: false),
+                    CurrencyId = table.Column<int>(type: "integer", nullable: false),
+                    ListPrice = table.Column<decimal>(type: "numeric", nullable: false),
+                    ListPriceVat = table.Column<decimal>(type: "numeric", nullable: false),
+                    Quantity = table.Column<int>(type: "integer", nullable: false),
+                    CriticalQuantity = table.Column<int>(type: "integer", nullable: false),
+                    MaxSellerQuantity = table.Column<int>(type: "integer", nullable: false),
+                    CompaniesId = table.Column<int>(type: "integer", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    DeleteDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    Status = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_Brands_BrandId",
+                        column: x => x.BrandId,
+                        principalTable: "Brands",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_Companies_CompaniesId",
+                        column: x => x.CompaniesId,
+                        principalTable: "Companies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Products_Currencies_CurrencyId",
+                        column: x => x.CurrencyId,
+                        principalTable: "Currencies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_MainCategories_MainCategoryId",
+                        column: x => x.MainCategoryId,
+                        principalTable: "MainCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_SubCategories_SubCategoryId",
+                        column: x => x.SubCategoryId,
+                        principalTable: "SubCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -604,34 +608,26 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ProductId = table.Column<int>(type: "integer", nullable: false),
-                    ProductsId = table.Column<int>(type: "integer", nullable: true),
                     ImagePath = table.Column<string>(type: "text", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     DeleteDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     Status = table.Column<int>(type: "integer", nullable: false),
-                    SubAttributesId = table.Column<int>(type: "integer", nullable: true),
-                    SubCategoriesId = table.Column<int>(type: "integer", nullable: true)
+                    SubAttributesId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductPictures", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductPictures_Products_ProductsId",
-                        column: x => x.ProductsId,
+                        name: "FK_ProductPictures_Products_ProductId",
+                        column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ProductPictures_SubAttributes_SubAttributesId",
                         column: x => x.SubAttributesId,
                         principalTable: "SubAttributes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ProductPictures_SubCategories_SubCategoriesId",
-                        column: x => x.SubCategoriesId,
-                        principalTable: "SubCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -641,20 +637,57 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Name", "NormalizedName", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, "39d86889-45c7-4e61-90ee-fa6bfe0d8d75", new DateTime(2021, 5, 16, 12, 56, 24, 336, DateTimeKind.Local).AddTicks(2919), null, "admin", "ADMİN", 1, null },
-                    { 2, "04619ef1-f46e-49cb-bf2f-24423d34de04", new DateTime(2021, 5, 16, 12, 56, 24, 336, DateTimeKind.Local).AddTicks(5407), null, "plasiyer", "PLASİYER", 1, null },
-                    { 3, "180aa22a-c855-45c9-beb8-a9617c7ccd04", new DateTime(2021, 5, 16, 12, 56, 24, 336, DateTimeKind.Local).AddTicks(5431), null, "member", "MEMBER", 1, null }
+                    { 1, "5495605a-5afc-49ea-ba82-21ec9e789a8e", new DateTime(2021, 5, 23, 11, 36, 47, 503, DateTimeKind.Local).AddTicks(8807), null, "admin", "ADMİN", 1, null },
+                    { 2, "32fa09b0-0180-448b-8985-162d06e02e00", new DateTime(2021, 5, 23, 11, 36, 47, 504, DateTimeKind.Local).AddTicks(906), null, "plasiyer", "PLASİYER", 1, null },
+                    { 3, "3d9e8649-28d2-4d26-b96d-795999542190", new DateTime(2021, 5, 23, 11, 36, 47, 504, DateTimeKind.Local).AddTicks(927), null, "member", "MEMBER", 1, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Brands",
+                columns: new[] { "Id", "BrandName", "CreateDate", "DeleteDate", "Description", "ImagePath", "Status", "UpdateDate" },
+                values: new object[,]
+                {
+                    { 1, "Ayfar", new DateTime(2021, 5, 23, 11, 36, 47, 522, DateTimeKind.Local).AddTicks(2182), null, "Ayfar Farları", "/images/Brands/ayfar.jpg", 1, null },
+                    { 2, "TRW", new DateTime(2021, 5, 23, 11, 36, 47, 522, DateTimeKind.Local).AddTicks(4059), null, "TRW Balataları", "/images/Brands/trw.jpg", 1, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Companies",
                 columns: new[] { "Id", "AccountingCode", "Address", "City", "CompanyName", "CreateDate", "DeleteDate", "Fax", "Phone1", "Phone2", "PlasiyerCode", "RiskLimit", "State", "Status", "TaxAdress", "TaxNumber", "TotalBalance", "TotalRiskLimit", "UpdateDate" },
-                values: new object[] { 1, "1111111111", "deneme", "İstanbul", "DefaultCompany", new DateTime(2021, 5, 16, 12, 56, 24, 333, DateTimeKind.Local).AddTicks(6756), null, null, null, null, null, 0m, "Eyüp", 1, null, null, 0m, 0m, null });
+                values: new object[] { 1, "1111111111", "deneme", "İstanbul", "DefaultCompany", new DateTime(2021, 5, 23, 11, 36, 47, 502, DateTimeKind.Local).AddTicks(929), null, null, null, null, null, 0m, "Eyüp", 1, null, null, 0m, 0m, null });
+
+            migrationBuilder.InsertData(
+                table: "Currencies",
+                columns: new[] { "Id", "CreateDate", "CurrencyCode", "CurrencyName", "DeleteDate", "Status", "Symbol", "UpdateDate" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2021, 5, 23, 11, 36, 47, 522, DateTimeKind.Local).AddTicks(5555), "TL", "Türk Lirası", null, 1, '₺', null },
+                    { 2, new DateTime(2021, 5, 23, 11, 36, 47, 522, DateTimeKind.Local).AddTicks(8002), "USD", "Amerikan Doları", null, 1, '$', null },
+                    { 3, new DateTime(2021, 5, 23, 11, 36, 47, 522, DateTimeKind.Local).AddTicks(8043), "EUR", "EURO", null, 1, '€', null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "MainCategories",
+                columns: new[] { "Id", "CategoyName", "CreateDate", "DeleteDate", "Description", "ImagePath", "Status", "UpdateDate" },
+                values: new object[,]
+                {
+                    { 1, "Aydınlatma", new DateTime(2021, 5, 23, 11, 36, 47, 520, DateTimeKind.Local).AddTicks(9186), null, "Aydınlarma ve Ekipmanları", "/images/MainCategory/default.jpg", 1, null },
+                    { 2, "Fren Sistemi", new DateTime(2021, 5, 23, 11, 36, 47, 521, DateTimeKind.Local).AddTicks(3695), null, "Fren Sistemi ve Ekipmanları", "/images/SubCategory/default.jpg", 1, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "SubCategories",
+                columns: new[] { "Id", "CategoyName", "CreateDate", "DeleteDate", "Description", "ImagePath", "MainCategoriesId", "MainCategoryId", "Status", "UpdateDate" },
+                values: new object[,]
+                {
+                    { 1, "Far", new DateTime(2021, 5, 23, 11, 36, 47, 521, DateTimeKind.Local).AddTicks(6731), null, "Far ve Ekipmanları", "/images/MainCategory/default.jpg", null, 1, 1, null },
+                    { 2, "Balata", new DateTime(2021, 5, 23, 11, 36, 47, 521, DateTimeKind.Local).AddTicks(9797), null, "Balatalar", "/images/SubCategory/default.jpg", null, 2, 1, null }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "CompanyId", "CompanyName", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Email", "EmailConfirmed", "FullName", "ImagePath", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PlasiyerCode", "SecurityStamp", "Status", "TwoFactorEnabled", "UpdateDate", "UserName" },
-                values: new object[] { 1, 0, 1, "DefaultCompany", "a456688c-080e-4dfe-8b98-b82bf0912856", new DateTime(2021, 5, 16, 12, 56, 24, 337, DateTimeKind.Local).AddTicks(701), null, "admin@simpleb2b.com", false, "Admin Admin", "/images/users/default.jpg", false, null, "admin@simpleb2b.com", "ADMİN", "AQAAAAEAACcQAAAAEDzkxXKuNe0NSty1XtO2MMuTmP2aN1r2SqBoH7TSKmonwmgC4PrndTTeWRVEbfclHQ==", null, false, 0, "simpleb2badmin", 1, false, null, "admin" });
+                values: new object[] { 1, 0, 1, "DefaultCompany", "6d173810-63ab-4dd7-b0f4-44ec228039af", new DateTime(2021, 5, 23, 11, 36, 47, 504, DateTimeKind.Local).AddTicks(5099), null, "admin@simpleb2b.com", false, "Admin Admin", "/images/users/default.jpg", false, null, "admin@simpleb2b.com", "ADMİN", "AQAAAAEAACcQAAAAEAr2O/8Qm668+4tkyUNBv2e7vyAaGqc48Ozx1Bvgkm1bylTf/Oz3nJEeNV+GLNdwdA==", null, false, 0, "simpleb2badmin", 1, false, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -754,9 +787,9 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 column: "CompaniesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductPictures_ProductsId",
+                name: "IX_ProductPictures_ProductId",
                 table: "ProductPictures",
-                column: "ProductsId");
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductPictures_SubAttributesId",
@@ -764,14 +797,9 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 column: "SubAttributesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductPictures_SubCategoriesId",
-                table: "ProductPictures",
-                column: "SubCategoriesId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_BrandsId",
+                name: "IX_Products_BrandId",
                 table: "Products",
-                column: "BrandsId");
+                column: "BrandId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CompaniesId",
@@ -779,19 +807,19 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 column: "CompaniesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_CurrenciesId",
+                name: "IX_Products_CurrencyId",
                 table: "Products",
-                column: "CurrenciesId");
+                column: "CurrencyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_MainCategoriesId",
+                name: "IX_Products_MainCategoryId",
                 table: "Products",
-                column: "MainCategoriesId");
+                column: "MainCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_SubCategoriesId",
+                name: "IX_Products_SubCategoryId",
                 table: "Products",
-                column: "SubCategoriesId");
+                column: "SubCategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SubAttributes_MainAttributesId",
@@ -802,6 +830,11 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 name: "IX_SubAttributes_ProductsId",
                 table: "SubAttributes",
                 column: "ProductsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubCategories_MainCategoriesId",
+                table: "SubCategories",
+                column: "MainCategoriesId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -867,10 +900,10 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 name: "Currencies");
 
             migrationBuilder.DropTable(
-                name: "MainCategories");
+                name: "SubCategories");
 
             migrationBuilder.DropTable(
-                name: "SubCategories");
+                name: "MainCategories");
         }
     }
 }

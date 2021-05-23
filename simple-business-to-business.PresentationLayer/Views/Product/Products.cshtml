@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var _currentpage = ViewBag.Currentpage;
     var _totalpage = ViewBag.Totalpage;
+    var _basketCount = ViewBag.BasketCount;
 }
 
 <div class="content-wrapper">
@@ -31,6 +32,7 @@
                         <div class="card-header">
                             <h3 class="card-title"><a asp-controller="Product" asp-action="ProductAdd">Yeni Ürün Eklemek için Tıklayın</a></h3>
                         </div>
+
                         <!-- /.card-header -->
                         <div class="card-body">
                             <form asp-controller="Product" asp-action="Products" asp-route-pageIndex="@_currentpage" method="post">
@@ -38,11 +40,13 @@
                                 <table class="table table-hover table-bordered">
                                     <thead>
                                         <tr>
+                                            <th>Resim</th>
                                             <th>Barkod</th>
                                             <th>Marka</th>
                                             <th>ÜrünAdı</th>
                                             <th>Liste Fiyatı</th>
-                                            <th>Status</th>
+                                            <th>Stok</th>
+                                            <th>Sepet</th>
                                             <th>Düzenle</th>
                                             <th>Sil</th>
                                         </tr>
@@ -55,6 +59,8 @@
                                 </table>
 
                             </form>
+
+                          
 
                         </div>
                         <!-- /.card-body -->
@@ -74,8 +80,9 @@
     var controllerName = '@(ViewContext.RouteData.Values["Controller"].ToString())';
         var actionName = '@(ViewContext.RouteData.Values["Action"].ToString())';
         var totalpage = '@_totalpage';
+        var basketcount = '@_basketCount';
     </script>
 
     <script src="~/assets/scripts/paging/getProductList.js"></script>
-
+    <script src="~/assets/scripts/paging/basketCount.js"></script>
 }

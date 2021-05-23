@@ -1,7 +1,12 @@
-﻿using simple_business_to_business.ApplicationLayer.Modes.DTOs;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using simple_business_to_business.ApplicationLayer.Modes.DTOs;
 using simple_business_to_business.ApplicationLayer.Services.Interfaces;
+using simple_business_to_business.DomainLayer.Entities.Concrete;
+using simple_business_to_business.DomainLayer.Repositories.Interfaces.EntityType;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,39 +14,80 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
 {
     public class ProductService : IProductService
     {
-        public Task AddProduct(ProductDto AddCompany)
+        private readonly IProductRepository _productRepository;
+        private readonly IMapper _Mapper;
+        public ProductService(IProductRepository productRepository, IMapper Mapper)
         {
-            throw new NotImplementedException();
+            _productRepository = productRepository;
+            _Mapper = Mapper;
+        }
+        public async Task Add(ProductDto AddCompany)
+        {
+            await _productRepository.Add(_Mapper.Map<Products>(AddCompany));
+            await _productRepository.Commit();
+            
         }
 
-        public Task DeleteProduct(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var removeproduct = await _productRepository.GetById(id);
+            _productRepository.Delete(removeproduct);
+            await _productRepository.Commit();
         }
 
-        public Task EditProduct(ProductDto editCompanyDTO)
+        public async Task Edit(ProductDto editCompanyDTO)
         {
-            throw new NotImplementedException();
+            _productRepository.Update(_Mapper.Map<Products>(editCompanyDTO));
+            await _productRepository.Commit();
         }
 
-        public Task<List<ProductDto>> GetAll()
+        public async Task<List<ProductDto>> GetAll()
         {
-            throw new NotImplementedException();
+            return _Mapper.Map<List<ProductDto>>(await _productRepository.GetAll());
         }
 
-        public Task<ProductDto> GetById(int id)
+        public async Task<ProductDto> GetById(int id)
         {
-            throw new NotImplementedException();
+            return _Mapper.Map<ProductDto>(await _productRepository.GetById(id));
         }
 
-        public Task<List<ProductDto>> ListProdcut(int pageIndex)
+        public async Task<List<ProductDto>> List(int pageIndex)
         {
-            throw new NotImplementedException();
+            var product = await _productRepository.GetFilteredList(
+               selector: x => new ProductDto
+               {
+                   Id = x.Id,
+                   BrandId = x.BrandId,
+                   ProductName = x.ProductName,
+                   CriticalQuantity = x.CriticalQuantity,
+                   CurrencyId = x.CurrencyId,
+                   Description = x.Description,
+                   ListPrice = x.ListPrice,
+                   ListPriceVat = x.ListPriceVat,
+                   MainCategoryId = x.MainCategoryId,
+                   MaxSellerQuantity = x.MaxSellerQuantity,
+                   ProductCode = x.ProductCode,
+                   Quantity = x.Quantity,
+                   SubCategoryId = x.SubCategoryId,
+                   Vat = x.Vat,
+                   ProductPictures = _Mapper.Map<ProductPictureDTO>(x.ProductPictures.FirstOrDefault()),
+                   Brands = _Mapper.Map<BrandDTO>(x.Brands),
+                   MainCategories = _Mapper.Map<CategoryDTO>(x.MainCategories),
+                   Status = x.Status,
+                   SubCategories= _Mapper.Map<CategoryDTO>(x.SubCategories)
+                  
+               },
+               expression: null,
+               include: x => x.Include(z => z.MainCategories).Include(z => z.ProductPictures).Include(z => z.SubCategories).Include(z => z.Brands),
+               pageIndex: pageIndex,
+               pageSize: 10); 
+
+            return product;
         }
 
-        public Task<int> ProductIdFromName(string productname)
+        public async Task<int> ProductIdFromName(string productname)
         {
-            throw new NotImplementedException();
+            return await _productRepository.GetFilteredFirstOrDefault(selector: x => x.Id, expression: x => x.ProductName == productname);
         }
     }
 }

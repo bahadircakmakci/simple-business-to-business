@@ -1,0 +1,182 @@
+﻿@model ProductDto
+@{
+    ViewData["Title"] = "ProductEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">AnaSayfaya Dön</a></li>
+                       
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <form asp-controller="Product" asp-action="ProductEdit" method="post" enctype="multipart/form-data">
+                                <input type="hidden" asp-for="Id" />
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <div class="input-group mb-3">
+                                    <input asp-for="ProductName" type="text" class="form-control text-uppercase" maxlength="250" placeholder="Ürün Adı">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fa fa-info"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input asp-for="Description" type="text" class="form-control text-uppercase" maxlength="450" placeholder="Ürün Açıklama">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="fa fa-info"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input asp-for="ProductCode" type="text" class="form-control text-uppercase" maxlength="50" placeholder="Ürün Kodu">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-info"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <select class="form-control" asp-for="BrandId" asp-items="@((IEnumerable<SelectListItem>)ViewData["Brands"])">
+                                                <option value="0">Marka Seçiniz</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <select class="form-control" asp-for="MainCategoryId" asp-items="@((IEnumerable<SelectListItem>)ViewData["MainCategory"])">
+                                                <option value="0">AnaKategoriyi Seçiniz</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <select class="form-control" asp-for="SubCategoryId" asp-items="@((IEnumerable<SelectListItem>)ViewData["SubCategory"])">
+                                                <option value="0">AltKategory Seçiniz</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input asp-for="ListPrice" type="number" class="form-control" maxlength="11" placeholder="Liste Fiyatı">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-info"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input asp-for="Vat" type="number" class="form-control" maxlength="11" placeholder="KDV">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-info"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <select class="form-control" asp-for="CurrencyId">
+                                                <option value="0">Para Birimi Seçin...</option>
+                                                <option value="1">TL</option>
+                                                <option value="2">USD</option>
+                                                <option value="3">EUR</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input asp-for="Quantity" type="number" class="form-control" maxlength="11" placeholder="Stok Adeti">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-info"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input asp-for="CriticalQuantity" type="number" class="form-control" maxlength="11" placeholder="Kritik Stok Miktarı">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-info"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input asp-for="MaxSellerQuantity" type="number" class="form-control" maxlength="30" placeholder="En Fazla Satılabilecek Stok Adeti">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-info"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="input-group mb-3">
+                                            <input type="file" class="form-control-file" name="file" />Ürün Görseli Yükle
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <button type="submit" class="btn btn-success">Kaydet</button>
+                                </div>
+                            </form>
+
+
+
+
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Company" asp-action="CompanyList" class="btn btn-block btn-dark">Kayıtlı Firmalar</a>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- /.content -->
+</div>
+
+
+

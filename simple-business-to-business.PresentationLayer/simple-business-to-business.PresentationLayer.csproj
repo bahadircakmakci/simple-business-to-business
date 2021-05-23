@@ -27,6 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\images\MainCategory\" />
+    <Folder Include="wwwroot\images\SubCategory\" />
     <Folder Include="wwwroot\images\product\" />
   </ItemGroup>
 

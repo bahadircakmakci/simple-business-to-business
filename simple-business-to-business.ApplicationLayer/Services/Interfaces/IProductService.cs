@@ -10,10 +10,10 @@ namespace simple_business_to_business.ApplicationLayer.Services.Interfaces
     {
         Task<int> ProductIdFromName(string productname);
         Task<ProductDto> GetById(int id);
-        Task EditProduct(ProductDto editCompanyDTO);
-        Task AddProduct(ProductDto AddCompany);
-        Task DeleteProduct(int id);
-        Task<List<ProductDto>> ListProdcut(int pageIndex);
+        Task Edit(ProductDto editCompanyDTO);
+        Task Add(ProductDto AddCompany);
+        Task Delete(int id);
+        Task<List<ProductDto>> List(int pageIndex);
         Task<List<ProductDto>> GetAll();
     }
 }

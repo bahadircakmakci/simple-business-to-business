@@ -56,26 +56,29 @@ namespace simple_business_to_business.InfrastructureLayer.Context
             //seed Data
             builder.Entity<Companies>()
                 .HasData(
-                 new Companies { Id=1,
-                                 CompanyName="DefaultCompany",
-                                 CreateDate=DateTime.Now,
-                                 City="İstanbul",
-                                 Address="deneme",
-                                 State="Eyüp",
-                                 Status=Status.Active,
-                                 AccountingCode="1111111111"
-                                 
+                 new Companies
+                 {
+                     Id = 1,
+                     CompanyName = "DefaultCompany",
+                     CreateDate = DateTime.Now,
+                     City = "İstanbul",
+                     Address = "deneme",
+                     State = "Eyüp",
+                     Status = Status.Active,
+                     AccountingCode = "1111111111"
+
                  });
 
-            
+
             builder.Entity<AppUserRoles>()
                 .HasData(
-                new AppUserRoles {  
-                    Id=1,
-                    CreateDate=DateTime.Now,
-                    Name="admin",
-                    NormalizedName="ADMİN",
-                    Status=Status.Active                    
+                new AppUserRoles
+                {
+                    Id = 1,
+                    CreateDate = DateTime.Now,
+                    Name = "admin",
+                    NormalizedName = "ADMİN",
+                    Status = Status.Active
                 },
                 new AppUserRoles
                 {
@@ -112,7 +115,7 @@ namespace simple_business_to_business.InfrastructureLayer.Context
                     ImagePath = "/images/users/default.jpg",
                     TwoFactorEnabled = false,
                     LockoutEnabled = false,
-                    SecurityStamp="simpleb2badmin",
+                    SecurityStamp = "simpleb2badmin",
                     PasswordHash = new PasswordHasher<AppUsers>().HashPassword(new AppUsers { UserName = "admin" }, "admin123")
 
                 }
@@ -120,8 +123,106 @@ namespace simple_business_to_business.InfrastructureLayer.Context
 
             builder.Entity<AppUserManagerRoles>()
                 .HasData(
-                new AppUserManagerRoles { RoleId=1,UserId=1 }
+                new AppUserManagerRoles { RoleId = 1, UserId = 1 }
                 );
+            builder.Entity<MainCategories>().HasData(new MainCategories
+            {
+                CategoyName = "Aydınlatma",
+                CreateDate = DateTime.Now,
+                Description = "Aydınlarma ve Ekipmanları",
+                Id = 1,
+                ImagePath = "/images/MainCategory/default.jpg",
+                Status = Status.Active
+
+            },
+            new MainCategories
+            {
+                CategoyName = "Fren Sistemi",
+                CreateDate = DateTime.Now,
+                Description = "Fren Sistemi ve Ekipmanları",
+                Id = 2,
+                ImagePath = "/images/SubCategory/default.jpg",
+                Status = Status.Active
+
+            }
+            );
+
+            builder.Entity<SubCategories>().HasData(
+                new SubCategories
+                {
+                    CategoyName = "Far",
+                    CreateDate = DateTime.Now,
+                    Description = "Far ve Ekipmanları",
+                    Id = 1,
+                    ImagePath = "/images/MainCategory/default.jpg",
+                    Status = Status.Active,
+                    MainCategoryId = 1
+
+                },
+            new SubCategories
+            {
+                CategoyName = "Balata",
+                CreateDate = DateTime.Now,
+                Description = "Balatalar",
+                Id = 2,
+                ImagePath = "/images/SubCategory/default.jpg",
+                Status = Status.Active,
+                MainCategoryId = 2
+
+            }
+            );
+            builder.Entity<Brands>().HasData(
+
+                new Brands
+                {
+                    BrandName = "Ayfar",
+                    Description = "Ayfar Farları",
+                    CreateDate = DateTime.Now,
+                    Id = 1,
+                    ImagePath = "/images/Brands/ayfar.jpg",
+                    Status = Status.Active
+                },
+                new Brands
+                {
+                    BrandName = "TRW",
+                    Description = "TRW Balataları",
+                    CreateDate = DateTime.Now,
+                    Id = 2,
+                    ImagePath = "/images/Brands/trw.jpg",
+                    Status = Status.Active
+                }
+                );
+            builder.Entity<Currencies>().HasData(
+                new Currencies
+                {
+                    Id = 1,
+                    CreateDate = DateTime.Now,
+                    CurrencyCode = "TL",
+                    CurrencyName = "Türk Lirası",
+                    Symbol = '₺',
+                    Status = Status.Active
+                },
+                new Currencies
+                {
+                    Id = 2,
+                    CreateDate = DateTime.Now,
+                    CurrencyCode = "USD",
+                    CurrencyName = "Amerikan Doları",
+                    Symbol = '$',
+                    Status = Status.Active
+                },
+                new Currencies
+                {
+                    Id = 3,
+                    CreateDate = DateTime.Now,
+                    CurrencyCode = "EUR",
+                    CurrencyName = "EURO",
+                    Symbol = '€',
+                    Status = Status.Active
+                }
+                );
+
+
             //
 
 

@@ -2,6 +2,7 @@
 using simple_business_to_business.DomainLayer.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace simple_business_to_business.DomainLayer.Entities.Concrete
@@ -15,18 +16,22 @@ namespace simple_business_to_business.DomainLayer.Entities.Concrete
         public string Description { get; set; }
 
         public int BrandId { get; set; }
+        [ForeignKey(nameof(BrandId))]
         public Brands Brands { get; set; }
 
         public int MainCategoryId { get; set; }
+        [ForeignKey(nameof(MainCategoryId))]
         public MainCategories MainCategories { get; set; }
 
         public int SubCategoryId { get; set; }
+        [ForeignKey(nameof(SubCategoryId))]
         public SubCategories SubCategories { get; set; }
 
         public decimal Vat { get; set; }
 
 
         public int CurrencyId { get; set; }
+        [ForeignKey(nameof(CurrencyId))]
         public Currencies Currencies { get; set; }
 
         public decimal ListPrice { get; set; }

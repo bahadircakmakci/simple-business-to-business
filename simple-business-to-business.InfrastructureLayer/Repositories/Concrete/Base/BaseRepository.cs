@@ -32,9 +32,9 @@ namespace simple_business_to_business.InfrastructureLayer.Repositories.Concrete.
 
         public async Task<T> FirstOrDefault(Expression<Func<T, bool>> expression) => await table.Where(expression).FirstOrDefaultAsync();
 
-        public async Task<List<T>> Get(Expression<Func<T, bool>> expression) => await table.Where(expression).ToListAsync();
+        public async Task<List<T>> Get(Expression<Func<T, bool>> expression) => await table.AsNoTracking().Where(expression).ToListAsync();
 
-        public async Task<List<T>> GetAll() => await table.ToListAsync();
+        public async Task<List<T>> GetAll() => await table.AsNoTracking().ToListAsync();
 
         public async Task<T> GetById(int id) => await table.FindAsync(id);
 
