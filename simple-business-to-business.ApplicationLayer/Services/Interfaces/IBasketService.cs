@@ -10,6 +10,7 @@ namespace simple_business_to_business.ApplicationLayer.Services.Interfaces
     {
         Task<int> IdFromName(string name);
         Task<BasketDTO> GetById(int id);
+        Task<BasketDTO> GetByUserProductId(int Userid, int productId);
         Task Edit(BasketDTO editDTO);
         Task Add(BasketDTO AddDTO);
         Task Delete(int id);

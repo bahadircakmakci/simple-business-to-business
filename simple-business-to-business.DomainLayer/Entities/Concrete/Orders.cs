@@ -8,7 +8,7 @@ namespace simple_business_to_business.DomainLayer.Entities.Concrete
 {
     public class Orders:IBaseEntity
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public int AppUserId { get; set; }
         public AppUsers AppUsers { get; set; }

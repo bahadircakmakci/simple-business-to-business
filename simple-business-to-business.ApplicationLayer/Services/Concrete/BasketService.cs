@@ -6,6 +6,7 @@ using simple_business_to_business.DomainLayer.Entities.Concrete;
 using simple_business_to_business.DomainLayer.Repositories.Interfaces.EntityType;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,6 +52,11 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
             return _Mapper.Map<BasketDTO>(await _basketRepository.GetById(id));
         }
 
+        public async Task<BasketDTO> GetByUserProductId(int Userid,int productId)
+        {
+            return _Mapper.Map<BasketDTO>(_basketRepository.Get(x => x.AppUserId == Userid && x.ProductId==productId).Result.FirstOrDefault());
+        }
+
         public Task<int> IdFromName(string name)
         {
             throw new NotImplementedException();
@@ -72,8 +78,9 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
                    UpdateDate = x.UpdateDate
                },
                expression: null,
-               include: x=>x.Include(z=>z.AppUsers).Include(z=>z.Products),
+               include: x => x.Include(z => z.AppUsers).Include(z => z.Products).ThenInclude(a=>a.Brands).Include(p=>p.Products).ThenInclude(s=>s.ProductPictures),
                pageIndex: pageIndex,
+               orderBy:x=>x.OrderBy(z=>z.Id),
                pageSize: 10) ;
 
             return product;

@@ -380,8 +380,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
                     AppUserId = table.Column<int>(type: "integer", nullable: false),
                     AppUsersId = table.Column<int>(type: "integer", nullable: true),
                     CompanyId = table.Column<int>(type: "integer", nullable: false),
@@ -478,9 +477,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     AppUserId = table.Column<int>(type: "integer", nullable: false),
-                    AppUsersId = table.Column<int>(type: "integer", nullable: true),
                     ProductId = table.Column<int>(type: "integer", nullable: false),
-                    ProductsId = table.Column<int>(type: "integer", nullable: true),
                     BasketQuantity = table.Column<int>(type: "integer", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
@@ -491,17 +488,17 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 {
                     table.PrimaryKey("PK_Baskets", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Baskets_AspNetUsers_AppUsersId",
-                        column: x => x.AppUsersId,
+                        name: "FK_Baskets_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Baskets_Products_ProductsId",
-                        column: x => x.ProductsId,
+                        name: "FK_Baskets_Products_ProductId",
+                        column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -536,8 +533,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    OrderId = table.Column<int>(type: "integer", nullable: false),
-                    OrdersId = table.Column<int>(type: "integer", nullable: true),
+                    OrderId = table.Column<Guid>(type: "uuid", nullable: false),
+                    OrdersId = table.Column<Guid>(type: "uuid", nullable: true),
                     ProductId = table.Column<int>(type: "integer", nullable: false),
                     BasketId = table.Column<int>(type: "integer", nullable: true),
                     Quantity = table.Column<int>(type: "integer", nullable: false),
@@ -554,15 +551,15 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 {
                     table.PrimaryKey("PK_OrderDetails", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Baskets_BasketId",
-                        column: x => x.BasketId,
-                        principalTable: "Baskets",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_OrderDetails_Orders_OrdersId",
                         column: x => x.OrdersId,
                         principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OrderDetails_Products_BasketId",
+                        column: x => x.BasketId,
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -637,9 +634,9 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Name", "NormalizedName", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, "5495605a-5afc-49ea-ba82-21ec9e789a8e", new DateTime(2021, 5, 23, 11, 36, 47, 503, DateTimeKind.Local).AddTicks(8807), null, "admin", "ADMİN", 1, null },
-                    { 2, "32fa09b0-0180-448b-8985-162d06e02e00", new DateTime(2021, 5, 23, 11, 36, 47, 504, DateTimeKind.Local).AddTicks(906), null, "plasiyer", "PLASİYER", 1, null },
-                    { 3, "3d9e8649-28d2-4d26-b96d-795999542190", new DateTime(2021, 5, 23, 11, 36, 47, 504, DateTimeKind.Local).AddTicks(927), null, "member", "MEMBER", 1, null }
+                    { 1, "6bebdae2-56f2-429e-8f85-dd0eea28a975", new DateTime(2021, 5, 29, 19, 48, 25, 129, DateTimeKind.Local).AddTicks(25), null, "admin", "ADMİN", 1, null },
+                    { 2, "0d089489-18ea-416b-ad6c-bd3d78b3dcb6", new DateTime(2021, 5, 29, 19, 48, 25, 129, DateTimeKind.Local).AddTicks(2204), null, "plasiyer", "PLASİYER", 1, null },
+                    { 3, "278f4347-5b96-4f82-8547-7bac0fd1eb80", new DateTime(2021, 5, 29, 19, 48, 25, 129, DateTimeKind.Local).AddTicks(2225), null, "member", "MEMBER", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -647,23 +644,23 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 columns: new[] { "Id", "BrandName", "CreateDate", "DeleteDate", "Description", "ImagePath", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, "Ayfar", new DateTime(2021, 5, 23, 11, 36, 47, 522, DateTimeKind.Local).AddTicks(2182), null, "Ayfar Farları", "/images/Brands/ayfar.jpg", 1, null },
-                    { 2, "TRW", new DateTime(2021, 5, 23, 11, 36, 47, 522, DateTimeKind.Local).AddTicks(4059), null, "TRW Balataları", "/images/Brands/trw.jpg", 1, null }
+                    { 1, "Ayfar", new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(9684), null, "Ayfar Farları", "/images/Brands/ayfar.jpg", 1, null },
+                    { 2, "TRW", new DateTime(2021, 5, 29, 19, 48, 25, 148, DateTimeKind.Local).AddTicks(1643), null, "TRW Balataları", "/images/Brands/trw.jpg", 1, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Companies",
                 columns: new[] { "Id", "AccountingCode", "Address", "City", "CompanyName", "CreateDate", "DeleteDate", "Fax", "Phone1", "Phone2", "PlasiyerCode", "RiskLimit", "State", "Status", "TaxAdress", "TaxNumber", "TotalBalance", "TotalRiskLimit", "UpdateDate" },
-                values: new object[] { 1, "1111111111", "deneme", "İstanbul", "DefaultCompany", new DateTime(2021, 5, 23, 11, 36, 47, 502, DateTimeKind.Local).AddTicks(929), null, null, null, null, null, 0m, "Eyüp", 1, null, null, 0m, 0m, null });
+                values: new object[] { 1, "1111111111", "deneme", "İstanbul", "DefaultCompany", new DateTime(2021, 5, 29, 19, 48, 25, 127, DateTimeKind.Local).AddTicks(1890), null, null, null, null, null, 0m, "Eyüp", 1, null, null, 0m, 0m, null });
 
             migrationBuilder.InsertData(
                 table: "Currencies",
                 columns: new[] { "Id", "CreateDate", "CurrencyCode", "CurrencyName", "DeleteDate", "Status", "Symbol", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 5, 23, 11, 36, 47, 522, DateTimeKind.Local).AddTicks(5555), "TL", "Türk Lirası", null, 1, '₺', null },
-                    { 2, new DateTime(2021, 5, 23, 11, 36, 47, 522, DateTimeKind.Local).AddTicks(8002), "USD", "Amerikan Doları", null, 1, '$', null },
-                    { 3, new DateTime(2021, 5, 23, 11, 36, 47, 522, DateTimeKind.Local).AddTicks(8043), "EUR", "EURO", null, 1, '€', null }
+                    { 1, new DateTime(2021, 5, 29, 19, 48, 25, 148, DateTimeKind.Local).AddTicks(3554), "TL", "Türk Lirası", null, 1, '₺', null },
+                    { 2, new DateTime(2021, 5, 29, 19, 48, 25, 148, DateTimeKind.Local).AddTicks(6978), "USD", "Amerikan Doları", null, 1, '$', null },
+                    { 3, new DateTime(2021, 5, 29, 19, 48, 25, 148, DateTimeKind.Local).AddTicks(7017), "EUR", "EURO", null, 1, '€', null }
                 });
 
             migrationBuilder.InsertData(
@@ -671,8 +668,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 columns: new[] { "Id", "CategoyName", "CreateDate", "DeleteDate", "Description", "ImagePath", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, "Aydınlatma", new DateTime(2021, 5, 23, 11, 36, 47, 520, DateTimeKind.Local).AddTicks(9186), null, "Aydınlarma ve Ekipmanları", "/images/MainCategory/default.jpg", 1, null },
-                    { 2, "Fren Sistemi", new DateTime(2021, 5, 23, 11, 36, 47, 521, DateTimeKind.Local).AddTicks(3695), null, "Fren Sistemi ve Ekipmanları", "/images/SubCategory/default.jpg", 1, null }
+                    { 1, "Aydınlatma", new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(267), null, "Aydınlarma ve Ekipmanları", "/images/MainCategory/default.jpg", 1, null },
+                    { 2, "Fren Sistemi", new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(2805), null, "Fren Sistemi ve Ekipmanları", "/images/SubCategory/default.jpg", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -680,14 +677,14 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 columns: new[] { "Id", "CategoyName", "CreateDate", "DeleteDate", "Description", "ImagePath", "MainCategoriesId", "MainCategoryId", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, "Far", new DateTime(2021, 5, 23, 11, 36, 47, 521, DateTimeKind.Local).AddTicks(6731), null, "Far ve Ekipmanları", "/images/MainCategory/default.jpg", null, 1, 1, null },
-                    { 2, "Balata", new DateTime(2021, 5, 23, 11, 36, 47, 521, DateTimeKind.Local).AddTicks(9797), null, "Balatalar", "/images/SubCategory/default.jpg", null, 2, 1, null }
+                    { 1, "Far", new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(4649), null, "Far ve Ekipmanları", "/images/MainCategory/default.jpg", null, 1, 1, null },
+                    { 2, "Balata", new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(7557), null, "Balatalar", "/images/SubCategory/default.jpg", null, 2, 1, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "CompanyId", "CompanyName", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Email", "EmailConfirmed", "FullName", "ImagePath", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PlasiyerCode", "SecurityStamp", "Status", "TwoFactorEnabled", "UpdateDate", "UserName" },
-                values: new object[] { 1, 0, 1, "DefaultCompany", "6d173810-63ab-4dd7-b0f4-44ec228039af", new DateTime(2021, 5, 23, 11, 36, 47, 504, DateTimeKind.Local).AddTicks(5099), null, "admin@simpleb2b.com", false, "Admin Admin", "/images/users/default.jpg", false, null, "admin@simpleb2b.com", "ADMİN", "AQAAAAEAACcQAAAAEAr2O/8Qm668+4tkyUNBv2e7vyAaGqc48Ozx1Bvgkm1bylTf/Oz3nJEeNV+GLNdwdA==", null, false, 0, "simpleb2badmin", 1, false, null, "admin" });
+                values: new object[] { 1, 0, 1, "DefaultCompany", "b5c1741f-1f58-4a6e-a172-c7c8011f80f3", new DateTime(2021, 5, 29, 19, 48, 25, 129, DateTimeKind.Local).AddTicks(6345), null, "admin@simpleb2b.com", false, "Admin Admin", "/images/users/default.jpg", false, null, "admin@simpleb2b.com", "ADMİN", "AQAAAAEAACcQAAAAEHKYngKlLzBmVBciypIsiimQM9I03XVWlh+WkbRI/68IPkfcd59x9NIgXone+mp8AA==", null, false, 0, "simpleb2badmin", 1, false, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -737,14 +734,14 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Baskets_AppUsersId",
+                name: "IX_Baskets_AppUserId",
                 table: "Baskets",
-                column: "AppUsersId");
+                column: "AppUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Baskets_ProductsId",
+                name: "IX_Baskets_ProductId",
                 table: "Baskets",
-                column: "ProductsId");
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BrandDiscounts_BrandsId",
@@ -789,7 +786,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ProductPictures_ProductId",
                 table: "ProductPictures",
-                column: "ProductId");
+                column: "ProductId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductPictures_SubAttributesId",
@@ -855,6 +853,9 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Baskets");
+
+            migrationBuilder.DropTable(
                 name: "BrandDiscounts");
 
             migrationBuilder.DropTable(
@@ -871,9 +872,6 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "Baskets");
 
             migrationBuilder.DropTable(
                 name: "Orders");

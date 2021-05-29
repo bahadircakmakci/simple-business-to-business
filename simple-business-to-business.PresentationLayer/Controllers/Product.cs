@@ -134,9 +134,18 @@ namespace simple_business_to_business.PresentationLayer.Controllers
             var usrid = await _userService.UserIdFromName(User.Identity.Name);
             if (product!=null)
             {
-                
+                var basketcontrol = await _basketService.GetByUserProductId(usrid, id);
+                if (basketcontrol!=null)
+                {
+                    basketcontrol.BasketQuantity += 1;
+                    await _basketService.Edit(basketcontrol);
+                }
+                else
+                {
+                    await _basketService.Add(new BasketDTO { AppUserId = usrid, AppUsers = null, BasketQuantity = 1, ProductId = product.Id, Products = null, Status = Status.Active });
+                }
 
-                await _basketService.Add(new BasketDTO { AppUserId= usrid, AppUsers=null, BasketQuantity=1,ProductId=product.Id, Products=null, Status=Status.Active });
+               
             }  
             return RedirectToAction("Products", "Product");
         }
