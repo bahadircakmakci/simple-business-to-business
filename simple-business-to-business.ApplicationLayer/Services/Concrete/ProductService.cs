@@ -70,7 +70,7 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
                    Quantity = x.Quantity,
                    SubCategoryId = x.SubCategoryId,
                    Vat = x.Vat,
-                   ProductPictures = _Mapper.Map<ProductPictureDTO>(x.ProductPictures.FirstOrDefault()),
+                   ProductPictures = _Mapper.Map<ProductPictureDTO>(x.ProductPictures),
                    Brands = _Mapper.Map<BrandDTO>(x.Brands),
                    MainCategories = _Mapper.Map<CategoryDTO>(x.MainCategories),
                    Status = x.Status,

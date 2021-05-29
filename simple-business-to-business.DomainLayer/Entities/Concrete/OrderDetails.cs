@@ -11,12 +11,12 @@ namespace simple_business_to_business.DomainLayer.Entities.Concrete
 
         public int Id { get; set; }
 
-        public int OrderId { get; set; }
+        public Guid OrderId { get; set; }
         public Orders Orders { get; set; }
 
 
         public int ProductId { get; set; }
-        public Basket Basket { get; set; }
+        public Products Basket { get; set; }
 
         public int Quantity { get; set; }
         public decimal Price { get; set; }

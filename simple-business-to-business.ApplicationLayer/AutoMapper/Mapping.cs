@@ -23,6 +23,8 @@ namespace simple_business_to_business.ApplicationLayer.AutoMapper
             CreateMap<SubCategories, CategoryDTO>().ReverseMap();
             CreateMap<ProductPictures, ProductPictureDTO>().ReverseMap();
             CreateMap<Basket, BasketDTO>().ReverseMap();
+            CreateMap<Orders, OrderDTO>().ReverseMap();
+            CreateMap<OrderDetails, OrderDetailDTO>().ReverseMap();
         }
     }
 }

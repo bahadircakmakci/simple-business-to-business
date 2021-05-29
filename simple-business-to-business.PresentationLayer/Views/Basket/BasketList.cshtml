@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewData["Title"] = "BasketList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var _currentpage = ViewBag.Currentpage;
+    var _totalpage = ViewBag.Totalpage;
+    var _basketCount = ViewBag.BasketCount;
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">AnaSayfaya Dön</a></li>
+                        <li class="breadcrumb-item active">Sepetim</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <form asp-controller="Basket"  asp-action="BasketList" asp-route-pageIndex="@_currentpage" method="post">
+
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Resim</th>
+                                            <th>Barkod</th>
+                                            <th>Marka</th>
+                                            <th>ÜrünAdı</th>
+                                            <th>Adet</th>
+                                            <th>Fiyatı</th>
+                                            <th>KdvDahil Fiyatı</th>
+                                            <th>Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="ProductResult">
+                                    </tbody>
+                                    <tfoot id="PageProductResult">
+
+                                    </tfoot>
+                                </table>                                
+                            </form>
+                            <a asp-controller="Basket" asp-action="OrderCreate" class="btn btn-success btn-sm">Siparis Oluştur</a>
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- /.content -->
+</div>
+
+
+
+@section Scripts{
+
+    <script>
+
+    var controllerName = '@(ViewContext.RouteData.Values["Controller"].ToString())';
+        var actionName = '@(ViewContext.RouteData.Values["Action"].ToString())';
+        var totalpage = '@_totalpage';
+        var basketcount = '@_basketCount';
+    </script>
+
+    <script src="~/assets/scripts/paging/getBasket.js"></script>
+
+}
+

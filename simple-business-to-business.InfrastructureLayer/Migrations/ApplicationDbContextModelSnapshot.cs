@@ -169,8 +169,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "5495605a-5afc-49ea-ba82-21ec9e789a8e",
-                            CreateDate = new DateTime(2021, 5, 23, 11, 36, 47, 503, DateTimeKind.Local).AddTicks(8807),
+                            ConcurrencyStamp = "6bebdae2-56f2-429e-8f85-dd0eea28a975",
+                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 129, DateTimeKind.Local).AddTicks(25),
                             Name = "admin",
                             NormalizedName = "ADMİN",
                             Status = 1
@@ -178,8 +178,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "32fa09b0-0180-448b-8985-162d06e02e00",
-                            CreateDate = new DateTime(2021, 5, 23, 11, 36, 47, 504, DateTimeKind.Local).AddTicks(906),
+                            ConcurrencyStamp = "0d089489-18ea-416b-ad6c-bd3d78b3dcb6",
+                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 129, DateTimeKind.Local).AddTicks(2204),
                             Name = "plasiyer",
                             NormalizedName = "PLASİYER",
                             Status = 1
@@ -187,8 +187,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "3d9e8649-28d2-4d26-b96d-795999542190",
-                            CreateDate = new DateTime(2021, 5, 23, 11, 36, 47, 504, DateTimeKind.Local).AddTicks(927),
+                            ConcurrencyStamp = "278f4347-5b96-4f82-8547-7bac0fd1eb80",
+                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 129, DateTimeKind.Local).AddTicks(2225),
                             Name = "member",
                             NormalizedName = "MEMBER",
                             Status = 1
@@ -297,8 +297,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                             AccessFailedCount = 0,
                             CompanyId = 1,
                             CompanyName = "DefaultCompany",
-                            ConcurrencyStamp = "6d173810-63ab-4dd7-b0f4-44ec228039af",
-                            CreateDate = new DateTime(2021, 5, 23, 11, 36, 47, 504, DateTimeKind.Local).AddTicks(5099),
+                            ConcurrencyStamp = "b5c1741f-1f58-4a6e-a172-c7c8011f80f3",
+                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 129, DateTimeKind.Local).AddTicks(6345),
                             Email = "admin@simpleb2b.com",
                             EmailConfirmed = false,
                             FullName = "Admin Admin",
@@ -306,7 +306,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@simpleb2b.com",
                             NormalizedUserName = "ADMİN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAr2O/8Qm668+4tkyUNBv2e7vyAaGqc48Ozx1Bvgkm1bylTf/Oz3nJEeNV+GLNdwdA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHKYngKlLzBmVBciypIsiimQM9I03XVWlh+WkbRI/68IPkfcd59x9NIgXone+mp8AA==",
                             PhoneNumberConfirmed = false,
                             PlasiyerCode = 0,
                             SecurityStamp = "simpleb2badmin",
@@ -326,9 +326,6 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                     b.Property<int>("AppUserId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("AppUsersId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("BasketQuantity")
                         .HasColumnType("integer");
 
@@ -341,9 +338,6 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("ProductsId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("Status")
                         .HasColumnType("integer");
 
@@ -352,9 +346,9 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUsersId");
+                    b.HasIndex("AppUserId");
 
-                    b.HasIndex("ProductsId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Baskets");
                 });
@@ -443,7 +437,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         {
                             Id = 1,
                             BrandName = "Ayfar",
-                            CreateDate = new DateTime(2021, 5, 23, 11, 36, 47, 522, DateTimeKind.Local).AddTicks(2182),
+                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(9684),
                             Description = "Ayfar Farları",
                             ImagePath = "/images/Brands/ayfar.jpg",
                             Status = 1
@@ -452,7 +446,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         {
                             Id = 2,
                             BrandName = "TRW",
-                            CreateDate = new DateTime(2021, 5, 23, 11, 36, 47, 522, DateTimeKind.Local).AddTicks(4059),
+                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 148, DateTimeKind.Local).AddTicks(1643),
                             Description = "TRW Balataları",
                             ImagePath = "/images/Brands/trw.jpg",
                             Status = 1
@@ -532,7 +526,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                             Address = "deneme",
                             City = "İstanbul",
                             CompanyName = "DefaultCompany",
-                            CreateDate = new DateTime(2021, 5, 23, 11, 36, 47, 502, DateTimeKind.Local).AddTicks(929),
+                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 127, DateTimeKind.Local).AddTicks(1890),
                             RiskLimit = 0m,
                             State = "Eyüp",
                             Status = 1,
@@ -624,7 +618,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2021, 5, 23, 11, 36, 47, 522, DateTimeKind.Local).AddTicks(5555),
+                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 148, DateTimeKind.Local).AddTicks(3554),
                             CurrencyCode = "TL",
                             CurrencyName = "Türk Lirası",
                             Status = 1,
@@ -633,7 +627,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2021, 5, 23, 11, 36, 47, 522, DateTimeKind.Local).AddTicks(8002),
+                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 148, DateTimeKind.Local).AddTicks(6978),
                             CurrencyCode = "USD",
                             CurrencyName = "Amerikan Doları",
                             Status = 1,
@@ -642,7 +636,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2021, 5, 23, 11, 36, 47, 522, DateTimeKind.Local).AddTicks(8043),
+                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 148, DateTimeKind.Local).AddTicks(7017),
                             CurrencyCode = "EUR",
                             CurrencyName = "EURO",
                             Status = 1,
@@ -772,7 +766,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         {
                             Id = 1,
                             CategoyName = "Aydınlatma",
-                            CreateDate = new DateTime(2021, 5, 23, 11, 36, 47, 520, DateTimeKind.Local).AddTicks(9186),
+                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(267),
                             Description = "Aydınlarma ve Ekipmanları",
                             ImagePath = "/images/MainCategory/default.jpg",
                             Status = 1
@@ -781,7 +775,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         {
                             Id = 2,
                             CategoyName = "Fren Sistemi",
-                            CreateDate = new DateTime(2021, 5, 23, 11, 36, 47, 521, DateTimeKind.Local).AddTicks(3695),
+                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(2805),
                             Description = "Fren Sistemi ve Ekipmanları",
                             ImagePath = "/images/SubCategory/default.jpg",
                             Status = 1
@@ -807,11 +801,11 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                     b.Property<decimal>("Discount")
                         .HasColumnType("numeric");
 
-                    b.Property<int>("OrderId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uuid");
 
-                    b.Property<int?>("OrdersId")
-                        .HasColumnType("integer");
+                    b.Property<Guid?>("OrdersId")
+                        .HasColumnType("uuid");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
@@ -845,10 +839,9 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
 
             modelBuilder.Entity("simple_business_to_business.DomainLayer.Entities.Concrete.Orders", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("uuid");
 
                     b.Property<int>("AppUserId")
                         .HasColumnType("integer");
@@ -922,7 +915,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductId")
+                        .IsUnique();
 
                     b.HasIndex("SubAttributesId");
 
@@ -1096,7 +1090,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         {
                             Id = 1,
                             CategoyName = "Far",
-                            CreateDate = new DateTime(2021, 5, 23, 11, 36, 47, 521, DateTimeKind.Local).AddTicks(6731),
+                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(4649),
                             Description = "Far ve Ekipmanları",
                             ImagePath = "/images/MainCategory/default.jpg",
                             MainCategoryId = 1,
@@ -1106,7 +1100,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         {
                             Id = 2,
                             CategoyName = "Balata",
-                            CreateDate = new DateTime(2021, 5, 23, 11, 36, 47, 521, DateTimeKind.Local).AddTicks(9797),
+                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(7557),
                             Description = "Balatalar",
                             ImagePath = "/images/SubCategory/default.jpg",
                             MainCategoryId = 2,
@@ -1192,11 +1186,15 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 {
                     b.HasOne("simple_business_to_business.DomainLayer.Entities.Concrete.AppUsers", "AppUsers")
                         .WithMany()
-                        .HasForeignKey("AppUsersId");
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("simple_business_to_business.DomainLayer.Entities.Concrete.Products", "Products")
                         .WithMany()
-                        .HasForeignKey("ProductsId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AppUsers");
 
@@ -1239,7 +1237,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
 
             modelBuilder.Entity("simple_business_to_business.DomainLayer.Entities.Concrete.OrderDetails", b =>
                 {
-                    b.HasOne("simple_business_to_business.DomainLayer.Entities.Concrete.Basket", "Basket")
+                    b.HasOne("simple_business_to_business.DomainLayer.Entities.Concrete.Products", "Basket")
                         .WithMany()
                         .HasForeignKey("BasketId");
 
@@ -1270,8 +1268,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
             modelBuilder.Entity("simple_business_to_business.DomainLayer.Entities.Concrete.ProductPictures", b =>
                 {
                     b.HasOne("simple_business_to_business.DomainLayer.Entities.Concrete.Products", "Products")
-                        .WithMany("ProductPictures")
-                        .HasForeignKey("ProductId")
+                        .WithOne("ProductPictures")
+                        .HasForeignKey("simple_business_to_business.DomainLayer.Entities.Concrete.ProductPictures", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

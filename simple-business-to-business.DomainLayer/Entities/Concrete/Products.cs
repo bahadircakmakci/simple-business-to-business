@@ -41,8 +41,7 @@ namespace simple_business_to_business.DomainLayer.Entities.Concrete
         public int CriticalQuantity { get; set; }
         public int MaxSellerQuantity { get; set; }
 
-
-        public ICollection<ProductPictures>ProductPictures { get; set; }
+        public ProductPictures ProductPictures { get; set; }
 
         public ICollection<MainAttributes> MainAttributes { get; set; }
 
