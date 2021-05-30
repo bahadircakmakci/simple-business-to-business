@@ -15,7 +15,7 @@
                     <div class="card">
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form asp-controller="Home" asp-action="UserAccountEdit" method="post">
+                            <form asp-controller="Home" asp-action="UserAccountEdit" enctype="multipart/form-data" method="post">
                                 <input type="hidden" asp-for="Id" />
                                 <div asp-validation-summary="All" class="text-warning"></div>
                                 <div class="input-group mb-3">
@@ -47,7 +47,7 @@
                                     <select class="form-control" asp-for="CompanyId" asp-items="@((IEnumerable<SelectListItem>)ViewData["Companies"])">
                                         <option value="0">Firma Seçiniz...</option>
                                     </select>
-                                     
+
                                 </div>
                                 <div class="input-group mb-3">
                                     <input asp-for="Password" type="password" class="form-control" placeholder="Password">
@@ -64,6 +64,9 @@
                                             <span class="fas fa-lock"></span>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="file" class="form-control-file" name="file" />Profil Resimi Yükel Yükle                                 
                                 </div>
                                 <div class="row">
                                     <div class="col-8">

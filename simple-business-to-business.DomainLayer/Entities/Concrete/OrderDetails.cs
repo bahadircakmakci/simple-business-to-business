@@ -2,6 +2,7 @@
 using simple_business_to_business.DomainLayer.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace simple_business_to_business.DomainLayer.Entities.Concrete
@@ -16,7 +17,9 @@ namespace simple_business_to_business.DomainLayer.Entities.Concrete
 
 
         public int ProductId { get; set; }
-        public Products Basket { get; set; }
+
+        [ForeignKey(nameof(ProductId))]
+        public Products Products { get; set; }
 
         public int Quantity { get; set; }
         public decimal Price { get; set; }

@@ -1,15 +1,18 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using simple_business_to_business.ApplicationLayer.Modes.DTOs;
 using simple_business_to_business.ApplicationLayer.Services.Interfaces;
+using simple_business_to_business.DomainLayer.UnitOfWork;
 using simple_business_to_business.PresentationLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace simple_business_to_business.PresentationLayer.Controllers
@@ -20,16 +23,27 @@ namespace simple_business_to_business.PresentationLayer.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IAppUserService _appUserService;
         private readonly ICompanyService _companyService;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController(ILogger<HomeController> logger, IAppUserService userService, ICompanyService companyService)
+        public HomeController(ILogger<HomeController> logger, IAppUserService userService, ICompanyService companyService, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _appUserService = userService;
-            _companyService = companyService; 
+            _companyService = companyService;
+            _unitOfWork = unitOfWork;
         }
         [HttpGet, Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var usrid = await _appUserService.UserIdFromName(User.Identity.Name);
+            var usr = await _appUserService.GetById(usrid);
+
+            ViewBag.TotalOrder = _unitOfWork.OrderRepository.Get(x => x.CompanyId == usr.CompanyId).Result.Count();
+            ViewBag.TotalUser= _unitOfWork.AppUser.Get(x => x.CompanyId == usr.CompanyId).Result.Count();
+            ViewBag.Bakiye = _unitOfWork.OrderRepository.Get(x => x.CompanyId == usr.CompanyId).Result.Sum(x=>x.SubTotal)+ _unitOfWork.OrderRepository.Get(x => x.CompanyId == usr.CompanyId).Result.Sum(x => x.TotalTax);
+          
+
+
             return View();
         }
         public IActionResult LogOut()
@@ -74,9 +88,15 @@ namespace simple_business_to_business.PresentationLayer.Controllers
                 return Json(userlist, new JsonSerializerSettings());
              
         }
-        [HttpGet, Authorize(Roles = "admin")]
+        [HttpGet, Authorize]
         public async Task<IActionResult> UserAccountEdit(int id)
-        {
+        {  
+            var usrid = await _appUserService.UserIdFromName(User.Identity.Name);
+            if (usrid != id)
+            {
+                return StatusCode(403, "Yok Böyle Bir Erişim :D");
+            }
+           var usr=await _appUserService.GetById(id);
             ViewData["Companies"] = _companyService.GetAll().Result.Select(
                
                 n=>new SelectListItem
@@ -85,14 +105,18 @@ namespace simple_business_to_business.PresentationLayer.Controllers
                     Text=n.CompanyName
                 }
                 );
-            return View(await _appUserService.GetById(id));
+            return View(usr);
         }
 
-        [HttpPost, Authorize(Roles = "admin")]
-        public async Task<IActionResult> UserAccountEdit(EditProfileDTO model)
-        {
+        [HttpPost, Authorize]
+        public async Task<IActionResult> UserAccountEdit(EditProfileDTO model, IFormFile file)
+        { 
             if (ModelState.IsValid)
             {
+                if (file!=null)
+                {
+                    model.Image = file;
+                }
                 await _appUserService.EditUser(model);
                 
             }

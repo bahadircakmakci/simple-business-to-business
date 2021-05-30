@@ -78,7 +78,7 @@ namespace simple_business_to_business.ApplicationLayer.Services.Concrete
                   
                },
                expression: null,
-               include: x => x.Include(z => z.MainCategories).Include(z => z.ProductPictures).Include(z => z.SubCategories).Include(z => z.Brands),
+               include: x => x.Include(a=>a.MainCategories).Include(z => z.ProductPictures).Include(s => s.SubCategories).Include(k => k.Brands),
                pageIndex: pageIndex,
                pageSize: 10); 
 

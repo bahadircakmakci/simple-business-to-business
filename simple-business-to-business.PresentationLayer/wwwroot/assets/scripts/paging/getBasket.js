@@ -51,9 +51,9 @@ function loadResults(pageIndex, controllerName, actionName, totalpage, basketcou
                 var totalprice = 0.0;
                 $.each(result, function (key, item) {
 
-                    var price = parseFloat(item.Products.ListPrice) * parseFloat(item.BasketQuantity);
-                    var vat = parseFloat((parseFloat(item.Products.Vat) / 100) + 1);
-                    var pricevat = parseFloat(price * vat );
+                    var price = (parseFloat(item.Products.ListPrice) * parseFloat(item.BasketQuantity)).toFixed(2);
+                    var vat = parseFloat((parseFloat(item.Products.Vat) / 100) + 1).toFixed(2);
+                    var pricevat = parseFloat(price * vat).toFixed(2);
                     totalprice += pricevat;
                     html += '<tr>';
                     html += '<td><img src="' + item.Products.ProductPictures.ImagePath + '" class="img-circle img-md" alt="Product Image" /></td >';
@@ -72,8 +72,8 @@ function loadResults(pageIndex, controllerName, actionName, totalpage, basketcou
                 html += '<th></th>';
                 html += '<th></th>';
                 html += '<th>Toplam Fiyat</th>';
-              
-                html += '<th colspan="4">'+totalprice+'</th>';
+
+                html += '<th colspan="4">' + parseFloat(totalprice).toFixed(2) + '</th>';
 
                 html += '</tr>';
                 $('#ProductResult').html(html);

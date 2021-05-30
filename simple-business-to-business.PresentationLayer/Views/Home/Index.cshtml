@@ -1,5 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var _TotalOrder = ViewBag.TotalOrder;
+    var _TotalUser = ViewBag.TotalUser;
+    var _Bakiye = ViewBag.Bakiye;
+
 }
 
 <div class="content-wrapper">
@@ -23,9 +27,59 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="row">
+           
 
-            </div>
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>@_TotalOrder</h3>
+
+                                <p>Siparislerim</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>@_TotalUser</sup></h3>
+
+                                <p>Toplam Kullanıcılar</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>@_Bakiye</h3>
+
+                                <p>Toplam Bakiye</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-subway"></i>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                     
+                    <!-- ./col -->
+                </div>
+         
+         
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->

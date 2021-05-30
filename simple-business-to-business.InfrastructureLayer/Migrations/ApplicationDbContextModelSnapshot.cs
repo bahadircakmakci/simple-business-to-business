@@ -169,8 +169,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "6bebdae2-56f2-429e-8f85-dd0eea28a975",
-                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 129, DateTimeKind.Local).AddTicks(25),
+                            ConcurrencyStamp = "d283756c-b2c6-4b48-a217-963bc9dfe51b",
+                            CreateDate = new DateTime(2021, 5, 30, 13, 5, 22, 750, DateTimeKind.Local).AddTicks(8251),
                             Name = "admin",
                             NormalizedName = "ADMİN",
                             Status = 1
@@ -178,8 +178,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "0d089489-18ea-416b-ad6c-bd3d78b3dcb6",
-                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 129, DateTimeKind.Local).AddTicks(2204),
+                            ConcurrencyStamp = "dd24eddb-7f5a-40a5-aa94-950347d4e69e",
+                            CreateDate = new DateTime(2021, 5, 30, 13, 5, 22, 751, DateTimeKind.Local).AddTicks(1900),
                             Name = "plasiyer",
                             NormalizedName = "PLASİYER",
                             Status = 1
@@ -187,8 +187,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "278f4347-5b96-4f82-8547-7bac0fd1eb80",
-                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 129, DateTimeKind.Local).AddTicks(2225),
+                            ConcurrencyStamp = "9fe68811-c885-4381-a038-fc0089ada471",
+                            CreateDate = new DateTime(2021, 5, 30, 13, 5, 22, 751, DateTimeKind.Local).AddTicks(1946),
                             Name = "member",
                             NormalizedName = "MEMBER",
                             Status = 1
@@ -297,8 +297,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                             AccessFailedCount = 0,
                             CompanyId = 1,
                             CompanyName = "DefaultCompany",
-                            ConcurrencyStamp = "b5c1741f-1f58-4a6e-a172-c7c8011f80f3",
-                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 129, DateTimeKind.Local).AddTicks(6345),
+                            ConcurrencyStamp = "ff406b91-77b1-4f18-80b2-9f6512880f61",
+                            CreateDate = new DateTime(2021, 5, 30, 13, 5, 22, 751, DateTimeKind.Local).AddTicks(8361),
                             Email = "admin@simpleb2b.com",
                             EmailConfirmed = false,
                             FullName = "Admin Admin",
@@ -306,7 +306,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@simpleb2b.com",
                             NormalizedUserName = "ADMİN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHKYngKlLzBmVBciypIsiimQM9I03XVWlh+WkbRI/68IPkfcd59x9NIgXone+mp8AA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELL23exO9gSXXbnWo8AVBFiRcxTrLPEEo2kgWNG0SvVMmeJer7Jsw5Lx7LmPxiDo0g==",
                             PhoneNumberConfirmed = false,
                             PlasiyerCode = 0,
                             SecurityStamp = "simpleb2badmin",
@@ -437,7 +437,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         {
                             Id = 1,
                             BrandName = "Ayfar",
-                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(9684),
+                            CreateDate = new DateTime(2021, 5, 30, 13, 5, 22, 772, DateTimeKind.Local).AddTicks(9710),
                             Description = "Ayfar Farları",
                             ImagePath = "/images/Brands/ayfar.jpg",
                             Status = 1
@@ -446,7 +446,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         {
                             Id = 2,
                             BrandName = "TRW",
-                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 148, DateTimeKind.Local).AddTicks(1643),
+                            CreateDate = new DateTime(2021, 5, 30, 13, 5, 22, 773, DateTimeKind.Local).AddTicks(1686),
                             Description = "TRW Balataları",
                             ImagePath = "/images/Brands/trw.jpg",
                             Status = 1
@@ -526,7 +526,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                             Address = "deneme",
                             City = "İstanbul",
                             CompanyName = "DefaultCompany",
-                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 127, DateTimeKind.Local).AddTicks(1890),
+                            CreateDate = new DateTime(2021, 5, 30, 13, 5, 22, 747, DateTimeKind.Local).AddTicks(7579),
                             RiskLimit = 0m,
                             State = "Eyüp",
                             Status = 1,
@@ -618,7 +618,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 148, DateTimeKind.Local).AddTicks(3554),
+                            CreateDate = new DateTime(2021, 5, 30, 13, 5, 22, 773, DateTimeKind.Local).AddTicks(3370),
                             CurrencyCode = "TL",
                             CurrencyName = "Türk Lirası",
                             Status = 1,
@@ -627,7 +627,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 148, DateTimeKind.Local).AddTicks(6978),
+                            CreateDate = new DateTime(2021, 5, 30, 13, 5, 22, 773, DateTimeKind.Local).AddTicks(5834),
                             CurrencyCode = "USD",
                             CurrencyName = "Amerikan Doları",
                             Status = 1,
@@ -636,7 +636,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 148, DateTimeKind.Local).AddTicks(7017),
+                            CreateDate = new DateTime(2021, 5, 30, 13, 5, 22, 773, DateTimeKind.Local).AddTicks(5869),
                             CurrencyCode = "EUR",
                             CurrencyName = "EURO",
                             Status = 1,
@@ -766,7 +766,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         {
                             Id = 1,
                             CategoyName = "Aydınlatma",
-                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(267),
+                            CreateDate = new DateTime(2021, 5, 30, 13, 5, 22, 772, DateTimeKind.Local).AddTicks(263),
                             Description = "Aydınlarma ve Ekipmanları",
                             ImagePath = "/images/MainCategory/default.jpg",
                             Status = 1
@@ -775,7 +775,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         {
                             Id = 2,
                             CategoyName = "Fren Sistemi",
-                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(2805),
+                            CreateDate = new DateTime(2021, 5, 30, 13, 5, 22, 772, DateTimeKind.Local).AddTicks(2826),
                             Description = "Fren Sistemi ve Ekipmanları",
                             ImagePath = "/images/SubCategory/default.jpg",
                             Status = 1
@@ -788,9 +788,6 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int?>("BasketId")
-                        .HasColumnType("integer");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("timestamp without time zone");
@@ -830,9 +827,9 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BasketId");
-
                     b.HasIndex("OrdersId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -1090,7 +1087,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         {
                             Id = 1,
                             CategoyName = "Far",
-                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(4649),
+                            CreateDate = new DateTime(2021, 5, 30, 13, 5, 22, 772, DateTimeKind.Local).AddTicks(4537),
                             Description = "Far ve Ekipmanları",
                             ImagePath = "/images/MainCategory/default.jpg",
                             MainCategoryId = 1,
@@ -1100,7 +1097,7 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         {
                             Id = 2,
                             CategoyName = "Balata",
-                            CreateDate = new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(7557),
+                            CreateDate = new DateTime(2021, 5, 30, 13, 5, 22, 772, DateTimeKind.Local).AddTicks(7543),
                             Description = "Balatalar",
                             ImagePath = "/images/SubCategory/default.jpg",
                             MainCategoryId = 2,
@@ -1237,17 +1234,19 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
 
             modelBuilder.Entity("simple_business_to_business.DomainLayer.Entities.Concrete.OrderDetails", b =>
                 {
-                    b.HasOne("simple_business_to_business.DomainLayer.Entities.Concrete.Products", "Basket")
-                        .WithMany()
-                        .HasForeignKey("BasketId");
-
                     b.HasOne("simple_business_to_business.DomainLayer.Entities.Concrete.Orders", "Orders")
                         .WithMany()
                         .HasForeignKey("OrdersId");
 
-                    b.Navigation("Basket");
+                    b.HasOne("simple_business_to_business.DomainLayer.Entities.Concrete.Products", "Products")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Orders");
+
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("simple_business_to_business.DomainLayer.Entities.Concrete.Orders", b =>

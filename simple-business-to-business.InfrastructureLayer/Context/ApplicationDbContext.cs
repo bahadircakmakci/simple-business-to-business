@@ -111,7 +111,7 @@ namespace simple_business_to_business.InfrastructureLayer.Context
                     NormalizedUserName = "ADMİN",
                     EmailConfirmed = false,
                     Status = Status.Active,
-                    FullName = "Admin Admin",
+                    FullName = "Bahadır ÇAKMAKÇI",
                     ImagePath = "/images/users/default.jpg",
                     TwoFactorEnabled = false,
                     LockoutEnabled = false,

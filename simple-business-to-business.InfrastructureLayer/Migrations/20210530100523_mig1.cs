@@ -536,7 +536,6 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                     OrderId = table.Column<Guid>(type: "uuid", nullable: false),
                     OrdersId = table.Column<Guid>(type: "uuid", nullable: true),
                     ProductId = table.Column<int>(type: "integer", nullable: false),
-                    BasketId = table.Column<int>(type: "integer", nullable: true),
                     Quantity = table.Column<int>(type: "integer", nullable: false),
                     Price = table.Column<decimal>(type: "numeric", nullable: false),
                     Discount = table.Column<decimal>(type: "numeric", nullable: false),
@@ -557,11 +556,11 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Products_BasketId",
-                        column: x => x.BasketId,
+                        name: "FK_OrderDetails_Products_ProductId",
+                        column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -634,9 +633,9 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Name", "NormalizedName", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, "6bebdae2-56f2-429e-8f85-dd0eea28a975", new DateTime(2021, 5, 29, 19, 48, 25, 129, DateTimeKind.Local).AddTicks(25), null, "admin", "ADMİN", 1, null },
-                    { 2, "0d089489-18ea-416b-ad6c-bd3d78b3dcb6", new DateTime(2021, 5, 29, 19, 48, 25, 129, DateTimeKind.Local).AddTicks(2204), null, "plasiyer", "PLASİYER", 1, null },
-                    { 3, "278f4347-5b96-4f82-8547-7bac0fd1eb80", new DateTime(2021, 5, 29, 19, 48, 25, 129, DateTimeKind.Local).AddTicks(2225), null, "member", "MEMBER", 1, null }
+                    { 1, "d283756c-b2c6-4b48-a217-963bc9dfe51b", new DateTime(2021, 5, 30, 13, 5, 22, 750, DateTimeKind.Local).AddTicks(8251), null, "admin", "ADMİN", 1, null },
+                    { 2, "dd24eddb-7f5a-40a5-aa94-950347d4e69e", new DateTime(2021, 5, 30, 13, 5, 22, 751, DateTimeKind.Local).AddTicks(1900), null, "plasiyer", "PLASİYER", 1, null },
+                    { 3, "9fe68811-c885-4381-a038-fc0089ada471", new DateTime(2021, 5, 30, 13, 5, 22, 751, DateTimeKind.Local).AddTicks(1946), null, "member", "MEMBER", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -644,23 +643,23 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 columns: new[] { "Id", "BrandName", "CreateDate", "DeleteDate", "Description", "ImagePath", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, "Ayfar", new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(9684), null, "Ayfar Farları", "/images/Brands/ayfar.jpg", 1, null },
-                    { 2, "TRW", new DateTime(2021, 5, 29, 19, 48, 25, 148, DateTimeKind.Local).AddTicks(1643), null, "TRW Balataları", "/images/Brands/trw.jpg", 1, null }
+                    { 1, "Ayfar", new DateTime(2021, 5, 30, 13, 5, 22, 772, DateTimeKind.Local).AddTicks(9710), null, "Ayfar Farları", "/images/Brands/ayfar.jpg", 1, null },
+                    { 2, "TRW", new DateTime(2021, 5, 30, 13, 5, 22, 773, DateTimeKind.Local).AddTicks(1686), null, "TRW Balataları", "/images/Brands/trw.jpg", 1, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Companies",
                 columns: new[] { "Id", "AccountingCode", "Address", "City", "CompanyName", "CreateDate", "DeleteDate", "Fax", "Phone1", "Phone2", "PlasiyerCode", "RiskLimit", "State", "Status", "TaxAdress", "TaxNumber", "TotalBalance", "TotalRiskLimit", "UpdateDate" },
-                values: new object[] { 1, "1111111111", "deneme", "İstanbul", "DefaultCompany", new DateTime(2021, 5, 29, 19, 48, 25, 127, DateTimeKind.Local).AddTicks(1890), null, null, null, null, null, 0m, "Eyüp", 1, null, null, 0m, 0m, null });
+                values: new object[] { 1, "1111111111", "deneme", "İstanbul", "DefaultCompany", new DateTime(2021, 5, 30, 13, 5, 22, 747, DateTimeKind.Local).AddTicks(7579), null, null, null, null, null, 0m, "Eyüp", 1, null, null, 0m, 0m, null });
 
             migrationBuilder.InsertData(
                 table: "Currencies",
                 columns: new[] { "Id", "CreateDate", "CurrencyCode", "CurrencyName", "DeleteDate", "Status", "Symbol", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 5, 29, 19, 48, 25, 148, DateTimeKind.Local).AddTicks(3554), "TL", "Türk Lirası", null, 1, '₺', null },
-                    { 2, new DateTime(2021, 5, 29, 19, 48, 25, 148, DateTimeKind.Local).AddTicks(6978), "USD", "Amerikan Doları", null, 1, '$', null },
-                    { 3, new DateTime(2021, 5, 29, 19, 48, 25, 148, DateTimeKind.Local).AddTicks(7017), "EUR", "EURO", null, 1, '€', null }
+                    { 1, new DateTime(2021, 5, 30, 13, 5, 22, 773, DateTimeKind.Local).AddTicks(3370), "TL", "Türk Lirası", null, 1, '₺', null },
+                    { 2, new DateTime(2021, 5, 30, 13, 5, 22, 773, DateTimeKind.Local).AddTicks(5834), "USD", "Amerikan Doları", null, 1, '$', null },
+                    { 3, new DateTime(2021, 5, 30, 13, 5, 22, 773, DateTimeKind.Local).AddTicks(5869), "EUR", "EURO", null, 1, '€', null }
                 });
 
             migrationBuilder.InsertData(
@@ -668,8 +667,8 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 columns: new[] { "Id", "CategoyName", "CreateDate", "DeleteDate", "Description", "ImagePath", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, "Aydınlatma", new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(267), null, "Aydınlarma ve Ekipmanları", "/images/MainCategory/default.jpg", 1, null },
-                    { 2, "Fren Sistemi", new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(2805), null, "Fren Sistemi ve Ekipmanları", "/images/SubCategory/default.jpg", 1, null }
+                    { 1, "Aydınlatma", new DateTime(2021, 5, 30, 13, 5, 22, 772, DateTimeKind.Local).AddTicks(263), null, "Aydınlarma ve Ekipmanları", "/images/MainCategory/default.jpg", 1, null },
+                    { 2, "Fren Sistemi", new DateTime(2021, 5, 30, 13, 5, 22, 772, DateTimeKind.Local).AddTicks(2826), null, "Fren Sistemi ve Ekipmanları", "/images/SubCategory/default.jpg", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -677,14 +676,14 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 columns: new[] { "Id", "CategoyName", "CreateDate", "DeleteDate", "Description", "ImagePath", "MainCategoriesId", "MainCategoryId", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, "Far", new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(4649), null, "Far ve Ekipmanları", "/images/MainCategory/default.jpg", null, 1, 1, null },
-                    { 2, "Balata", new DateTime(2021, 5, 29, 19, 48, 25, 147, DateTimeKind.Local).AddTicks(7557), null, "Balatalar", "/images/SubCategory/default.jpg", null, 2, 1, null }
+                    { 1, "Far", new DateTime(2021, 5, 30, 13, 5, 22, 772, DateTimeKind.Local).AddTicks(4537), null, "Far ve Ekipmanları", "/images/MainCategory/default.jpg", null, 1, 1, null },
+                    { 2, "Balata", new DateTime(2021, 5, 30, 13, 5, 22, 772, DateTimeKind.Local).AddTicks(7543), null, "Balatalar", "/images/SubCategory/default.jpg", null, 2, 1, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "CompanyId", "CompanyName", "ConcurrencyStamp", "CreateDate", "DeleteDate", "Email", "EmailConfirmed", "FullName", "ImagePath", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PlasiyerCode", "SecurityStamp", "Status", "TwoFactorEnabled", "UpdateDate", "UserName" },
-                values: new object[] { 1, 0, 1, "DefaultCompany", "b5c1741f-1f58-4a6e-a172-c7c8011f80f3", new DateTime(2021, 5, 29, 19, 48, 25, 129, DateTimeKind.Local).AddTicks(6345), null, "admin@simpleb2b.com", false, "Admin Admin", "/images/users/default.jpg", false, null, "admin@simpleb2b.com", "ADMİN", "AQAAAAEAACcQAAAAEHKYngKlLzBmVBciypIsiimQM9I03XVWlh+WkbRI/68IPkfcd59x9NIgXone+mp8AA==", null, false, 0, "simpleb2badmin", 1, false, null, "admin" });
+                values: new object[] { 1, 0, 1, "DefaultCompany", "ff406b91-77b1-4f18-80b2-9f6512880f61", new DateTime(2021, 5, 30, 13, 5, 22, 751, DateTimeKind.Local).AddTicks(8361), null, "admin@simpleb2b.com", false, "Admin Admin", "/images/users/default.jpg", false, null, "admin@simpleb2b.com", "ADMİN", "AQAAAAEAACcQAAAAELL23exO9gSXXbnWo8AVBFiRcxTrLPEEo2kgWNG0SvVMmeJer7Jsw5Lx7LmPxiDo0g==", null, false, 0, "simpleb2badmin", 1, false, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -764,14 +763,14 @@ namespace simple_business_to_business.InfrastructureLayer.Migrations
                 column: "ProductsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_BasketId",
-                table: "OrderDetails",
-                column: "BasketId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_OrderDetails_OrdersId",
                 table: "OrderDetails",
                 column: "OrdersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderDetails_ProductId",
+                table: "OrderDetails",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_AppUsersId",

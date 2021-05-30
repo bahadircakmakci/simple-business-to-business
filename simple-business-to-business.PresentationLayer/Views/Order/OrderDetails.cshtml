@@ -1,0 +1,80 @@
+﻿@model IEnumerable<OrderDetails>
+@{
+    ViewData["Title"] = "OrderDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">AnaSayfaya Dön</a></li>
+                        <li class="breadcrumb-item active">Siparis Detayı</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Resim</th>
+                                        <th>Marka</th>
+                                        <th>Ürün Kodu</th>
+                                        <th>Ürün Adı</th>
+
+                                        <th>Adet</th>
+                                        <th>Fiyat</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                        <td><img class="img-circle img-md" alt="Product Image" src="@item.Products.ProductPictures.ImagePath" />  </td>
+                                        <td>@item.Products.Brands.BrandName</td>
+                                        <td>@item.Products.ProductCode</td>
+                                        <td>@item.Products.ProductName</td>
+                                        <td>@item.Quantity</td>
+                                        <td>@item.Price</td>
+
+                                    </tr>
+                                    }
+                                </tbody>
+                                
+                            </table>
+
+
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Order" asp-action="OrderList" class="btn btn-dark btn-sm btn-block" >Siparislerim</a>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- /.content -->
+</div>
+
+
